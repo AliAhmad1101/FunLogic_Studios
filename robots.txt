@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://funlogicstudios.netlify.app/sitemap.xml

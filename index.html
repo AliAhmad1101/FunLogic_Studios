@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="description"
+content="Funlogic Studios is an independent game development studio creating immersive games, interactive adventures and innovative gaming experiences across PC, mobile and web platforms.">
+<meta name="keywords"
+content="Funlogic Studios, indie game studio, game development studio, indie games, game developers, pc games, mobile games, web games, game design, interactive games">
+<meta name="author" content="Funlogic Studios">
+<meta name="robots" content="index, follow">
+<link rel="canonical"
+href="https://funlogicstudios.netlify.app/">
+<meta name="language" content="English">
+<meta property="og:type" content="website">
+
+<meta property="og:url"
+content="https://funlogicstudios.netlify.app/">
+
+<meta property="og:title"
+content="Funlogic Studios | Indie Game Development Studio">
+
+<meta property="og:description"
+content="Creating immersive games, interactive adventures and memorable gaming experiences. Explore released titles, upcoming projects and more from Funlogic Studios.">
+
+<meta property="og:image"
+content="https://yourwebsite.netlify.app/og-banner.png">
+
+<meta property="og:site_name"
+content="Funlogic Studios">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title"
+content="Funlogic Studios | Indie Game Development Studio">
+
+<meta name="twitter:description"
+content="Discover released games, upcoming projects and the creative world of Funlogic Studios.">
+
+<meta name="twitter:image"
+content="https://funlogicstudios.netlify.app/og-banner.png">
+<meta name="format-detection" content="telephone=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FunLogic Studios ... Simple Ideas, Endless Adventures</title>
+<link rel="shortcut icon" href="ZeeResizer.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:ital,wght@0,100;0,300;0,400;0,700;1,300&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --space:#02050f;
+  --navy:#050d1a;
+  --cyan:#00d4ff;
+  --cyan2:#a0e8ff;
+  --pink:#ff3d6b;
+  --purple:#7c3aed;
+  --gold:#ffd700;
+  --green:#00ff88;
+  --white:#ffffff;
+  --glass:rgba(255,255,255,0.03);
+  --glass2:rgba(0,212,255,0.06);
+  --border:rgba(255,255,255,0.07);
+  --border-cyan:rgba(0,212,255,0.25);
+}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--space);color:#fff;font-family:'Exo 2',sans-serif;overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--cyan);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;mix-blend-mode:screen;box-shadow:0 0 20px var(--cyan),0 0 40px rgba(0,212,255,0.3)}
+
+body:hover #cursor{opacity:1}
+
+/* LOADING SCREEN */
+#loader{position:fixed;inset:0;z-index:99990;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+#loader-canvas{position:absolute;inset:0;width:100%;height:100%}
+.loader-content{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
+.loader-text{font-family:'Orbitron',monospace;font-size:clamp(1rem,2vw,1.4rem);font-weight:400;letter-spacing:8px;text-transform:uppercase;color:rgba(0,212,255,0.0);animation:loaderTextFade 1.2s ease 2.5s forwards}
+@keyframes loaderTextFade{0%{color:rgba(0,212,255,0);letter-spacing:24px}100%{color:rgba(0,212,255,0.9);letter-spacing:8px}}
+.loader-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,#fff,var(--cyan),#a0e8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0;animation:loaderTitleIn 1s ease 3.2s forwards}
+@keyframes loaderTitleIn{0%{opacity:0;transform:scale(0.8)}100%{opacity:1;transform:scale(1)}}
+.loader-sub{font-family:'Rajdhani',sans-serif;font-size:.9rem;letter-spacing:4px;color:rgba(255,255,255,0.3);text-transform:uppercase;opacity:0;animation:loaderSubIn .8s ease 4s forwards}
+@keyframes loaderSubIn{to{opacity:1}}
+.loader-bar-wrap{width:300px;height:2px;background:rgba(255,255,255,0.05);position:relative;overflow:hidden;opacity:0;animation:loaderBarIn .5s ease 4.4s forwards}
+@keyframes loaderBarIn{to{opacity:1}}
+.loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--purple),var(--cyan),var(--green));animation:loaderBarFill 1.2s ease 4.5s forwards;box-shadow:0 0 10px var(--cyan)}
+@keyframes loaderBarFill{to{width:100%}}
+.loader-pct{font-family:'Orbitron',monospace;font-size:.65rem;color:rgba(0,212,255,0.5);letter-spacing:2px;opacity:0;animation:loaderBarIn .5s ease 4.4s forwards}
+#loader.hide{animation:loaderHide .8s ease 5.9s forwards;pointer-events:none}
+@keyframes loaderHide{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+.loader-scanlines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,212,255,0.015) 3px,rgba(0,212,255,0.015) 4px);pointer-events:none;z-index:3}
+.loader-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.8) 100%);pointer-events:none;z-index:3}
+
+/* BACKGROUND */
+canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.scanlines{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px);pointer-events:none;z-index:1;opacity:.4}
+
+/* NAVIGATION */
+nav{position:fixed;top:0;width:100%;z-index:1000;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(2,5,15,0.75);backdrop-filter:blur(32px) saturate(180%);border-bottom:1px solid rgba(0,212,255,0.08);transition:all .3s}
+nav.scrolled{background:rgba(2,5,15,0.95);border-bottom-color:rgba(0,212,255,0.18)}
+nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.4}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{width:38px;height:38px;position:relative;display:flex;align-items:center;justify-content:center}
+.nav-logo-icon svg{width:38px;height:38px;filter:drop-shadow(0 0 12px rgba(0,212,255,0.7))}
+.nav-logo-text{font-family:'Orbitron',monospace;font-weight:700;font-size:.85rem;letter-spacing:2.5px;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2px;list-style:none;align-items:center}
+.nav-links li a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-weight:600;padding:7px 16px;border-radius:3px;transition:all .2s;position:relative;display:block}
+.nav-links li a::after{content:'';position:absolute;bottom:4px;left:50%;right:50%;height:1px;background:var(--cyan);transition:left .2s,right .2s;opacity:0}
+.nav-links li a:hover{color:var(--cyan)}
+.nav-links li a:hover::after{left:16px;right:16px;opacity:1}
+.nav-cta{background:linear-gradient(135deg,var(--cyan),#0088cc)!important;color:#020a14!important;border-radius:3px!important;padding:8px 20px!important;font-weight:700!important;letter-spacing:1.5px!important;box-shadow:0 0 24px rgba(0,212,255,0.3);transition:all .25s!important}
+.nav-cta:hover{box-shadow:0 0 40px rgba(0,212,255,0.6)!important;transform:translateY(-1px)}
+.nav-cta::after{display:none!important}
+
+/* SHARED SECTION ELEMENTS */
+section{position:relative;z-index:2}
+.section-inner{max-width:1200px;margin:0 auto;padding:100px 32px}
+.section-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);padding:5px 16px;font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;font-family:'Rajdhani',sans-serif;font-weight:700;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.section-tag::before{content:'';width:5px;height:5px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan);animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%,100%{opacity:1;box-shadow:0 0 8px var(--cyan)}50%{opacity:.4;box-shadow:0 0 2px var(--cyan)}}
+.section-title{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;line-height:1.1;margin-bottom:52px;letter-spacing:-1.5px}
+.section-title span{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.sec-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.12),transparent);position:relative;z-index:2}
+
+/* 3D CARD — premium glass morphism */
+.card-3d{transform-style:preserve-3d;transition:transform .1s ease-out}
+.glass-card{background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(0,212,255,0.02));border:1px solid rgba(255,255,255,0.07);backdrop-filter:blur(20px);position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent)}
+.glass-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,0.3),transparent)}
+.clip{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+.clip-sm{clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+
+/* BUTTONS */
+.btn{padding:13px 30px;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .25s;border:none;letter-spacing:2px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);opacity:0;transition:opacity .2s}
+.btn:hover::after{opacity:1}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),#0088cc);color:#020a14;box-shadow:0 0 30px rgba(0,212,255,0.25),inset 0 1px 0 rgba(255,255,255,0.2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(0,212,255,0.5)}
+.btn-outline{background:transparent;color:var(--cyan);border:1px solid rgba(0,212,255,0.3);box-shadow:inset 0 0 20px rgba(0,212,255,0.03)}
+.btn-outline:hover{background:rgba(0,212,255,0.08);border-color:var(--cyan);box-shadow:0 0 24px rgba(0,212,255,0.2),inset 0 0 20px rgba(0,212,255,0.05)}
+.btn-pink{background:linear-gradient(135deg,var(--pink),#cc0033);color:#fff;box-shadow:0 0 30px rgba(255,61,107,0.25)}
+.btn-pink:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(255,61,107,0.5)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 32px 80px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:60px 60px;perspective:600px;transform-style:preserve-3d;pointer-events:none}
+.hero-grid::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,transparent 20%,rgba(2,5,15,.85) 70%)}
+.hero-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(0,212,255,0.07) 0%,rgba(124,58,237,0.04) 40%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:heroGlowPulse 4s ease-in-out infinite}
+@keyframes heroGlowPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.08)}}
+
+/* 3D ROBOT HERO */
+#robot-canvas{width:260px;height:260px;position:relative;margin-bottom:20px;filter:drop-shadow(0 0 40px rgba(0,212,255,0.3))}
+
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(0,0,0,0.6);border:1px solid rgba(0,212,255,0.2);padding:8px 22px;font-size:.7rem;letter-spacing:3px;color:rgba(255,255,255,0.6);margin-bottom:28px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;backdrop-filter:blur(16px);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:livePulse 2s infinite}
+@keyframes livePulse{0%,100%{box-shadow:0 0 12px var(--green),0 0 24px rgba(0,255,136,0.2)}50%{box-shadow:0 0 4px var(--green)}}
+.hero-title{font-family:'Orbitron',monospace;font-size:clamp(3rem,8vw,7.5rem);font-weight:900;letter-spacing:-4px;line-height:.92;margin-bottom:10px}
+.hero-title .t1{background:linear-gradient(135deg,#fff,rgba(255,255,255,.8));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title .t2{background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;filter:drop-shadow(0 0 30px rgba(0,212,255,0.3))}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.4);margin:24px 0 44px;max-width:540px;line-height:1.75;font-weight:300;letter-spacing:.3px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:64px}
+.hero-stats{display:flex;gap:0;align-items:stretch;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.07);backdrop-filter:blur(24px);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.hstat{text-align:center;padding:20px 36px;position:relative}
+.hstat+.hstat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:40px;background:rgba(255,255,255,0.07)}
+.hstat .num{font-family:'Orbitron',monospace;font-size:1.9rem;font-weight:900;color:var(--cyan);display:block;line-height:1;text-shadow:0 0 20px rgba(0,212,255,0.4)}
+.hstat .lbl{font-size:.6rem;color:rgba(255,255,255,.25);letter-spacing:2.5px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;margin-top:6px;display:block}
+.hero-scroll{position:absolute;bottom:30px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.4;animation:heroScrollFade 2s ease 6s forwards}
+@keyframes heroScrollFade{to{opacity:0.6}}
+.scroll-txt{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;color:rgba(255,255,255,.3)}
+.scroll-bar{width:1px;height:48px;background:linear-gradient(180deg,var(--cyan),transparent);animation:scrollPulse 1.8s infinite}
+@keyframes scrollPulse{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* TICKER */
+.ticker-wrap{width:100%;overflow:hidden;border-top:1px solid rgba(0,212,255,0.08);border-bottom:1px solid rgba(0,212,255,0.08);padding:12px 0;background:rgba(0,212,255,0.01);position:relative;z-index:2}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:140px;z-index:1;pointer-events:none}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,var(--space),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg,var(--space),transparent)}
+.ticker{display:flex;gap:48px;animation:tick 35s linear infinite;white-space:nowrap}
+.ticker span{font-size:.7rem;letter-spacing:3px;color:rgba(255,255,255,.15);text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-weight:600}
+.ticker .hi{color:var(--cyan);opacity:.7}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-text p{color:rgba(255,255,255,.5);line-height:1.95;margin-bottom:18px;font-size:.95rem;font-weight:300}
+.about-text p strong{color:var(--cyan);font-weight:500}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.stat-card{padding:30px 22px;text-align:center;cursor:default;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.4}
+.stat-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 40px rgba(0,212,255,0.08)}
+.stat-card .num{font-family:'Orbitron',monospace;font-size:2.6rem;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;line-height:1;text-shadow:none;filter:drop-shadow(0 0 12px rgba(0,212,255,0.3))}
+.stat-card .lbl{font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:2.5px;margin-top:8px;font-family:'Rajdhani',sans-serif;text-transform:uppercase}
+.about-callout{margin-top:24px;padding:22px 26px;border-left:2px solid var(--cyan);background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(0,0,0,0.1));clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+.about-callout p{font-size:.88rem;color:rgba(255,255,255,.45);line-height:1.75;font-weight:300}
+.about-callout strong{color:var(--cyan);font-weight:500}
+
+/* GAMES */
+.gallery-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.tab{padding:8px 22px;border:1px solid rgba(255,255,255,0.07);background:transparent;color:rgba(255,255,255,.35);font-size:.72rem;cursor:pointer;transition:all .25s;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.tab.active,.tab:hover{background:rgba(0,212,255,0.1);color:var(--cyan);border-color:rgba(0,212,255,0.35);box-shadow:0 0 20px rgba(0,212,255,0.08)}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px}
+.game-card{overflow:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .4s;cursor:pointer;position:relative;background:#060d1c;border:1px solid rgba(255,255,255,0.06)}
+.game-card:hover{transform:translateY(-8px);box-shadow:0 40px 100px rgba(0,0,0,0.8),0 0 80px rgba(0,212,255,0.07)}
+.game-card::before{content:'';position:absolute;inset:0;border:1px solid transparent;transition:border-color .3s;z-index:1;pointer-events:none}
+.game-card:hover::before{border-color:rgba(0,212,255,0.25)}
+.game-img-placeholder{width:100%;height:210px;background:linear-gradient(135deg,#060e22,#0a1530);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.game-img-placeholder::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.03),rgba(124,58,237,0.04))}
+.placeholder-inner{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.3}
+.placeholder-icon{font-size:2.8rem;filter:grayscale(1)}
+.placeholder-text{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);font-family:'Rajdhani',sans-serif}
+.placeholder-add{position:absolute;top:12px;right:12px;width:30px;height:30px;border:1px dashed rgba(0,212,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:rgba(0,212,255,0.4);cursor:pointer;transition:all .2s}
+.placeholder-add:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,0.06)}
+.game-body{padding:22px 24px 26px}
+.game-badge{display:inline-block;padding:3px 12px;font-size:.62rem;font-weight:700;letter-spacing:2px;margin-bottom:14px;font-family:'Rajdhani',sans-serif;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
+.badge-dev{background:rgba(0,212,255,0.1);color:var(--cyan);border:1px solid rgba(0,212,255,0.2)}
+.badge-concept{background:rgba(255,61,107,0.08);color:#ff6b8a;border:1px solid rgba(255,61,107,0.2)}
+.badge-done{background:rgba(0,255,136,0.08);color:var(--green);border:1px solid rgba(0,255,136,0.2)}
+.game-card h3{font-size:1.18rem;font-weight:700;margin-bottom:8px;font-family:'Rajdhani',sans-serif;letter-spacing:.5px}
+.game-card p{color:rgba(255,255,255,.4);font-size:.84rem;line-height:1.7;font-weight:300}
+.game-tags{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.game-tag{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:3px 9px;font-size:.62rem;color:rgba(255,255,255,.3);letter-spacing:1.5px;text-transform:uppercase;font-family:'Rajdhani',sans-serif}
+.game-play-btn{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:9px 18px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.18);color:var(--cyan);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .25s;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.game-play-btn:hover{background:var(--cyan);color:#020a14}
+
+/* PRODUCTS */
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-bottom:60px}
+.product-info h3{font-size:2.1rem;font-weight:700;margin-bottom:14px;font-family:'Orbitron',monospace;letter-spacing:-1.5px;background:linear-gradient(135deg,#fff,var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.product-info p{color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:22px;font-size:.93rem;font-weight:300}
+.product-features{display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.pf{display:flex;align-items:center;gap:14px;font-size:.88rem;color:rgba(255,255,255,.55);font-weight:300}
+.pf .icon{width:34px;height:34px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
+.product-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,255,136,0.06);border:1px solid rgba(0,255,136,0.18);color:var(--green);padding:5px 14px;font-size:.68rem;font-weight:700;margin-bottom:18px;letter-spacing:2px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.device-mockup{display:flex;justify-content:center;align-items:center;perspective:800px}
+.laptop{width:100%;max-width:490px;filter:drop-shadow(0 40px 80px rgba(0,0,0,0.95)) drop-shadow(0 0 60px rgba(0,212,255,0.1));transform:rotateY(-5deg);transition:transform .4s}
+.device-mockup:hover .laptop{transform:rotateY(0deg)}
+.laptop-frame{background:linear-gradient(180deg,#0e1b30,#07101e);border-radius:14px 14px 0 0;border:2px solid #192840;padding:8px;position:relative}
+.laptop-frame::before{content:'';position:absolute;top:9px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:#152136;z-index:2}
+.laptop-frame::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.35),transparent)}
+.screen-inner{border-radius:8px;overflow:hidden;height:270px;position:relative;background:#0a1628;cursor:pointer}
+.screen-inner iframe{width:100%;height:100%;border:none;pointer-events:none}
+.screen-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,5,15,.8);backdrop-filter:blur(4px);transition:opacity .3s;cursor:pointer}
+.screen-inner:hover .screen-overlay{opacity:0;pointer-events:none}
+.screen-inner:hover iframe{pointer-events:all}
+.launch-hint{display:flex;flex-direction:column;align-items:center;gap:12px;color:rgba(255,255,255,0.8)}
+.play-icon{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#0088cc);display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 40px rgba(0,212,255,0.4)}
+.laptop-base{height:14px;background:linear-gradient(180deg,#0e1b30,#07101e);border-radius:0 0 3px 3px;border:2px solid #192840;border-top:none}
+.laptop-stand{height:8px;background:#07101e;border-radius:0 0 10px 10px;width:30%;margin:0 auto;border:2px solid #192840;border-top:none}
+.product-coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:20px}
+.coming-slot{border:1px dashed rgba(0,212,255,0.12);padding:38px 24px;text-align:center;color:rgba(255,255,255,.18);transition:all .3s;cursor:default;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+.coming-slot:hover{border-color:rgba(0,212,255,0.28);color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.02)}
+.coming-slot .icon{font-size:2rem;margin-bottom:10px;display:block}
+
+/* FUN ZONE */
+.fun-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fun-card{padding:30px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(135deg,rgba(0,212,255,0.02),rgba(0,0,0,0.2));position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.fun-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.25}
+.fun-card:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(0,212,255,0.05)}
+.fun-card h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;font-family:'Rajdhani',sans-serif;letter-spacing:.5px}
+.fun-card>p{color:rgba(255,255,255,.35);font-size:.82rem;margin-bottom:18px;font-weight:300}
+.quiz-q{font-size:.93rem;font-weight:600;margin-bottom:16px;color:rgba(255,255,255,.8);line-height:1.55;font-family:'Rajdhani',sans-serif}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{padding:10px 16px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);color:rgba(255,255,255,.6);font-size:.84rem;cursor:pointer;transition:all .2s;text-align:left;font-family:'Exo 2',sans-serif;font-weight:300;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
+.quiz-opt:hover{border-color:rgba(0,212,255,0.3);color:#fff;background:rgba(0,212,255,0.06)}
+.quiz-opt.correct{border-color:var(--green);background:rgba(0,255,136,0.07);color:var(--green)}
+.quiz-opt.wrong{border-color:var(--pink);background:rgba(255,61,107,0.07);color:#ff6b8a}
+.quiz-result{margin-top:12px;font-size:.83rem;font-weight:700;min-height:24px;font-family:'Rajdhani',sans-serif;letter-spacing:.5px}
+#quiz-score{margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.25);font-family:'Rajdhani',sans-serif;letter-spacing:1px}
+.gen-result{margin-top:14px;padding:16px 18px;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.12);border-left:2px solid var(--cyan);font-size:.93rem;font-weight:600;min-height:52px;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:'Rajdhani',sans-serif;letter-spacing:.5px;text-align:center;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+#reflex-area{width:100%;height:110px;border:1px dashed rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;margin-bottom:10px;user-select:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.team-card{padding:30px 20px;text-align:center;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(135deg,rgba(0,0,0,0.3),rgba(0,212,255,0.02));transition:all .35s;cursor:default;position:relative;overflow:hidden;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.3),transparent);opacity:0;transition:opacity .3s}
+.team-card:hover::before{opacity:1}
+.team-card:hover{transform:translateY(-6px);box-shadow:0 30px 70px rgba(0,0,0,0.7),0 0 40px rgba(0,212,255,0.07);background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(0,0,0,0.3))}
+.avatar{font-size:2.4rem;margin-bottom:14px;display:block;filter:drop-shadow(0 0 16px rgba(0,212,255,0.3))}
+.team-card h4{font-size:1rem;font-weight:700;margin-bottom:4px;font-family:'Rajdhani',sans-serif;letter-spacing:.5px}
+.role{font-size:.7rem;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;margin-bottom:10px;font-weight:600}
+.bio{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.65;font-weight:300}
+
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.blog-card{padding:28px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(135deg,rgba(0,0,0,0.3),rgba(0,212,255,0.015));transition:all .35s;cursor:pointer;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));position:relative}
+.blog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.35),transparent);opacity:.3;transition:opacity .3s}
+.blog-card:hover::before{opacity:.8}
+.blog-card:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 50px rgba(0,212,255,0.07)}
+.blog-meta{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.blog-date{font-size:.63rem;color:rgba(255,255,255,.25);letter-spacing:2px;font-family:'Rajdhani',sans-serif;font-weight:600;text-transform:uppercase}
+.blog-tag{font-size:.6rem;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.18);color:var(--cyan);padding:2px 8px;letter-spacing:1.5px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 5px) 0,100% 5px,100% 100%,5px 100%,0 calc(100% - 5px))}
+.blog-card h3{font-size:1rem;font-weight:700;margin-bottom:10px;line-height:1.4;font-family:'Rajdhani',sans-serif;letter-spacing:.3px}
+.blog-card p{color:rgba(255,255,255,.38);font-size:.83rem;line-height:1.7;font-weight:300}
+.read-more{display:inline-block;margin-top:16px;font-size:.72rem;color:var(--cyan);letter-spacing:1.5px;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;opacity:.6;transition:opacity .2s}
+.blog-card:hover .read-more{opacity:1}
+
+/* CONTACT */
+.contact-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+.contact-info p{color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:26px;font-size:.95rem;font-weight:300}
+.social-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.social-btn{padding:9px 18px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:rgba(255,255,255,.45);font-size:.75rem;cursor:pointer;transition:all .25s;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.social-btn:hover{border-color:rgba(0,212,255,0.35);color:var(--cyan);background:rgba(0,212,255,0.06);box-shadow:0 0 20px rgba(0,212,255,0.1)}
+.contact-form{padding:36px;border:1px solid rgba(255,255,255,0.07);background:linear-gradient(135deg,rgba(0,0,0,0.3),rgba(0,212,255,0.02));clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));position:relative}
+.contact-form::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;margin-bottom:14px;padding:13px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);color:#fff;font-family:'Exo 2',sans-serif;font-size:.9rem;font-weight:300;transition:border-color .25s,box-shadow .25s;outline:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:rgba(0,212,255,0.35);box-shadow:0 0 20px rgba(0,212,255,0.06),inset 0 0 10px rgba(0,212,255,0.02)}
+.contact-form select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(0,212,255,0.5)' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.contact-form select option{background:#0a1628}
+.contact-form textarea{resize:vertical;min-height:120px}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.2)}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.05);padding:40px 48px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.2),transparent)}
+.footer-logo{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.footer-logo-icon svg{width:32px;height:32px;opacity:.7;filter:drop-shadow(0 0 8px rgba(0,212,255,0.4))}
+footer p{color:rgba(255,255,255,.18);font-size:.8rem;font-family:'Rajdhani',sans-serif;letter-spacing:1px}
+footer p span{color:var(--cyan);opacity:.7}
+
+/* AI CHAT */
+#chat-bubble{position:fixed;bottom:28px;right:28px;z-index:5000;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+#chat-window{width:360px;border:1px solid rgba(0,212,255,0.18);background:rgba(4,10,24,0.96);backdrop-filter:blur(32px);display:flex;flex-direction:column;overflow:hidden;transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);max-height:0;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+#chat-window.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;max-height:600px}
+.chat-header{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(0,212,255,0.1);background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,0,0,0.2))}
+.chat-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:livePulse 2s infinite;flex-shrink:0}
+.chat-header h4{font-family:'Rajdhani',sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.5px}
+.chat-header span{font-size:.72rem;color:rgba(255,255,255,.3);font-family:'Exo 2',sans-serif;font-weight:300}
+.chat-suggestions{display:flex;gap:6px;padding:12px 14px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,0.04)}
+.sug{padding:5px 12px;border:1px solid rgba(0,212,255,0.18);background:rgba(0,212,255,0.04);color:rgba(255,255,255,.5);font-size:.7rem;cursor:pointer;transition:all .2s;font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:.5px;clip-path:polygon(0 0,calc(100% - 5px) 0,100% 5px,100% 100%,5px 100%,0 calc(100% - 5px))}
+.sug:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,0.08)}
+#chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:200px;max-height:280px;scrollbar-width:thin;scrollbar-color:rgba(0,212,255,0.2) transparent}
+.msg{padding:10px 14px;font-size:.84rem;line-height:1.6;max-width:88%;font-weight:300}
+.msg.user{align-self:flex-end;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);color:rgba(255,255,255,.85);clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.msg.bot{align-self:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,.65);clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.chat-input-row{display:flex;gap:0;border-top:1px solid rgba(0,212,255,0.1)}
+#chat-input{flex:1;padding:13px 16px;background:transparent;border:none;color:#fff;font-family:'Exo 2',sans-serif;font-size:.84rem;font-weight:300;outline:none}
+#chat-input::placeholder{color:rgba(255,255,255,.2)}
+#chat-send{padding:0 18px;background:rgba(0,212,255,0.08);border:none;border-left:1px solid rgba(0,212,255,0.15);color:var(--cyan);font-size:1rem;cursor:pointer;transition:background .2s}
+#chat-send:hover{background:rgba(0,212,255,0.18)}
+#chat-toggle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#0066aa);border:none;font-size:1.3rem;cursor:pointer;box-shadow:0 0 30px rgba(0,212,255,0.4),0 0 60px rgba(0,212,255,0.15);transition:all .25s;position:relative;display:flex;align-items:center;justify-content:center}
+#chat-toggle:hover{box-shadow:0 0 50px rgba(0,212,255,0.7),0 0 80px rgba(0,212,255,0.3);transform:scale(1.05)}
+.chat-notif{position:absolute;top:2px;right:2px;width:12px;height:12px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);border:2px solid #02050f;animation:livePulse 2s infinite}
+
+/* KONAMI */
+.konami-flash{position:fixed;inset:0;background:rgba(0,212,255,0.08);z-index:99980;pointer-events:none;animation:konamiFlash .5s ease forwards}
+@keyframes konamiFlash{0%,100%{opacity:0}30%,70%{opacity:1}}
+
+/* GLOW ORBS decoration */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.18}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,var(--purple),transparent);top:-200px;left:-200px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,var(--cyan),transparent);bottom:-150px;right:-150px}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,var(--pink),transparent);top:50%;right:-100px}
+
+/* Responsive */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .section-inner{padding:80px 20px}
+  .about-grid,.products-grid,.contact-inner{grid-template-columns:1fr}
+  .fun-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap;padding:14px}
+  .hstat{padding:14px 20px}
+  .games-grid{grid-template-columns:1fr}
+  #robot-canvas{width:200px;height:200px}
+}
+
+/* Selection color */
+::selection{background:rgba(0,212,255,0.25);color:#fff}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(0,212,255,0.3);border-radius:2px}
+</style>
+</head>
+<body>
+
+
+<div id="cursor"></div>
+
+
+<div id="loader">
+  <canvas id="loader-canvas"></canvas>
+  <div class="loader-scanlines"></div>
+  <div class="loader-vignette"></div>
+  <div class="loader-content">
+    <div class="loader-text">INITIATING LAUNCH SEQUENCE</div>
+    <div class="loader-title">FUNLOGIC STUDIOS</div>
+    <div class="loader-sub">Simple Ideas &nbsp;·&nbsp; Endless Adventures</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
+    </div>
+    <div class="loader-pct" id="loader-pct">LOADING SYSTEMS... 0%</div>
+  </div>
+</div>
+
+
+<canvas id="bg"></canvas>
+<div class="scanlines"></div>
+
+
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <div class="nav-logo-icon" >
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="22,4 38,12 38,32 22,40 6,32 6,12" fill="none" stroke="rgba(0,212,255,0.6)" stroke-width="1"/>
+        <polygon points="22,8 34,14 34,30 22,36 10,30 10,14" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.9)" stroke-width="1.5"/>
+        <text x="22" y="27" text-anchor="middle" fill="rgba(0,212,255,1)" font-size="14" font-weight="900" font-family="Orbitron,monospace">FL</text>
+      </svg>
+    </div>
+    <span class="nav-logo-text">FUNLOGIC</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#funzone">Fun Zone</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#blog">Devlog</a></li>
+    <li><a href="#contact" class="nav-cta">Join Us</a></li>
+  </ul>
+</nav>
+
+
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+
+
+  <canvas id="robot-canvas" width="260" height="260"></canvas>
+
+  <div class="hero-badge">
+    <div class="live-dot"></div>
+    Actively Building ... Awesome Games
+  </div>
+  <h1 class="hero-title">
+    <span class="t1">FUNLOGIC</span>
+    <span class="t2">STUDIOS</span>
+  </h1>
+  <p class="hero-sub">Simple ideas turned into endless adventure. We're an indie game studio crafting worlds, mechanics, and stories that matter.</p>
+  <div class="hero-btns">
+    <a href="#games" class="btn btn-primary">⚡ Explore Our Games</a>
+    <a href="#contact" class="btn btn-outline">🚀 Join the Team</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><span class="num">2+</span><span class="lbl">Games in Dev</span></div>
+    <div class="hstat"><span class="num">10+</span><span class="lbl">Team Members</span></div>
+    <div class="hstat"><span class="num">1</span><span class="lbl">Live Product</span></div>
+    <div class="hstat"><span class="num">∞</span><span class="lbl">Ambition</span></div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-txt">Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="hi">✦ FunLogic Studios</span><span>Godot 4 Engine</span><span class="hi">✦ The Last Digit — In Development</span><span>Blender · LMMS · Audacity</span><span class="hi">✦ PhysicsQuest — Live Now</span><span>Simple Ideas · Endless Adventures</span><span class="hi">✦ Case File: The Detective</span><span> 3D Games</span><span class="hi">✦ FunLogic Studios</span><span>Godot 4 Engine</span><span class="hi">✦ The Last Digit — In Development</span><span>Blender · LMMS · Audacity</span><span class="hi">✦ PhysicsQuest — Live Now</span><span>Simple Ideas · Endless Adventure</span><span class="hi">✦ Case File: The Detective</span><span> 3D Games</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="orb orb1"></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">Building <span>Worlds</span> from Scratch</h2>
+        <p>FunLogic Studio is a passion-fueled indie game development studio. We believe the best games come from <strong>genuine creativity and relentless curiosity</strong> ... not multi-million dollar budgets.</p>
+        <p>Founded by two dreamers united by a love for games, we build everything from scratch: <strong>3D adventures, horror experiences, and educational platforms</strong> that actually engage students. Every pixel, polygon, and sound is crafted in-house.</p>
+        <p>Our engine of choice currently is <strong>Godot 4</strong> ... open source, powerful, and the perfect fit for a team building tomorrow's games today. We're not just a studio. We're a movement.</p>
+        <div class="about-callout">
+          <p>🎮 <strong>Pro tip:</strong> Try the Konami Code on this page ... ↑↑↓↓←→←→BA. You'll unlock something special.</p>
+        </div>
+      </div>
+      <div>
+        <div class="about-stats">
+          <div class="stat-card glass-card clip reveal"><span class="num">2+</span><span class="lbl">Games in Pipeline</span></div>
+          <div class="stat-card glass-card clip reveal" style="transition-delay:.1s"><span class="num">10+</span><span class="lbl">Core Team Members</span></div>
+          <div class="stat-card glass-card clip reveal" style="transition-delay:.2s"><span class="num">1</span><span class="lbl">Product Live Now</span></div>
+          <div class="stat-card glass-card clip reveal" style="transition-delay:.3s"><span class="num">∞</span><span class="lbl">Lines of Passion</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="section-inner">
+    <div class="section-tag reveal">What We're Building</div>
+    <h2 class="section-title reveal">Our <span>Games</span></h2>
+    <div class="gallery-tabs reveal">
+      <button class="tab active" onclick="filterGames('all',this)">All Projects</button>
+      <button class="tab" onclick="filterGames('dev',this)">In Development</button>
+      <button class="tab" onclick="filterGames('concept',this)">Concepts</button>
+    </div>
+    <div class="games-grid" id="games-grid">
+      <div class="game-card reveal" data-cat="dev">
+        <div class="game-img-placeholder" style="background-image: url(tfd.png); background-size: contain; background-position: center; background-repeat: no-repeat;">
+
+        </div>
+        <div class="game-body">
+          <span class="game-badge badge-dev">In Development</span>
+          <h3>The Last Digit</h3>
+          <p>A 3D horror survival game set on an abandoned house. Explore the house, find the passcode, and escape before it is too late.</p>
+          <div class="game-tags"><span class="game-tag">3D</span><span class="game-tag">Horror</span><span class="game-tag">Survival</span><span class="game-tag">Godot 4</span></div>
+        </div>
+      </div>
+      <div class="game-card reveal" style="transition-delay:.1s" data-cat="concept">
+        <div class="game-img-placeholder" style="background-image: url(cf.png); background-size: contain; background-position: center; background-repeat: no-repeat;">
+
+        </div>
+        <div class="game-body">
+          <span class="game-badge badge-concept">Concept</span>
+          <h3>Case File: The Detective</h3>
+          <p>A mysterious case that no has ever solved before...</p>
+          <div class="game-tags"><span class="game-tag">Detective</span><span class="game-tag">Visual Novel</span><span class="game-tag">Mystery</span></div>
+        </div>
+      </div>
+      <!-- <div class="game-card reveal" style="transition-delay:.2s" data-cat="concept">
+        <div class="game-img-placeholder">
+          <div class="placeholder-inner"><div class="placeholder-icon">⚔️</div><div class="placeholder-text">Arena Survivor</div></div>
+          <div class="placeholder-add" title="Add image">+</div>
+        </div>
+        <div class="game-body">
+          <span class="game-badge badge-concept">Concept</span>
+          <h3>Arena Survivor 3D</h3>
+          <p>An intense 3D wave-based combat arena where players fight against escalating hordes of enemies across visually distinct battle stages. Upgrade, survive, conquer.</p>
+          <div class="game-tags"><span class="game-tag">3D</span><span class="game-tag">Combat</span><span class="game-tag">Wave-Based</span><span class="game-tag">Roguelite</span></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-inner">
+    <div class="orb orb2"></div>
+    <div class="section-tag reveal">What We've Shipped</div>
+    <h2 class="section-title reveal">Live <span>Products</span></h2>
+    <div class="products-grid reveal">
+      <div class="product-info">
+        <div class="product-badge">✦ Live Now</div>
+        <h3>PhysicsQuest</h3>
+        <p>Our first shipped product is a gamified physics learning platform built for students in grades 6–9. No login required. Jump straight into the science.</p>
+        <div class="product-features">
+          <div class="pf"><div class="icon">🎮</div> 55+ handcrafted physics levels</div>
+          <div class="pf"><div class="icon">⚡</div> 4 unique game modes</div>
+          <div class="pf"><div class="icon">🏆</div> Full XP & progression system</div>
+          <div class="pf"><div class="icon">🌐</div> No account, no download, just play</div>
+          <div class="pf"><div class="icon">🎓</div> Aligned to curriculum standards</div>
+        </div>
+        <a href="https://physics-quest-version1.netlify.app" target="_blank" class="btn btn-primary">▶ Play PhysicsQuest Live</a>
+      </div>
+      <div class="device-mockup reveal" style="transition-delay:.15s">
+        <div class="laptop">
+          <div class="laptop-frame">
+            <div class="screen-inner">
+              <iframe src="https://physics-quest-version1.netlify.app" loading="lazy" title="PhysicsQuest Preview"></iframe>
+              <div class="screen-overlay">
+                <div class="launch-hint">
+                  <div class="play-icon">▶</div>
+                  <span style="font-size:.8rem;letter-spacing:1px;font-family:'Rajdhani',sans-serif">HOVER TO PLAY</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+          <div class="laptop-stand"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-tag reveal" style="margin-top:20px">Coming Soon</div>
+    <div class="product-coming-grid">
+      <div class="coming-slot reveal"><span class="icon">🔢</span><strong>The Last Digit Demo</strong><p style="font-size:.75rem;margin-top:6px">Playable demo dropping when first chapter is complete</p></div>
+      <div class="coming-slot reveal" style="transition-delay:.1s"><span class="icon">📚</span><strong>More EdTech Tools</strong><p style="font-size:.75rem;margin-top:6px">New gamified learning apps in development</p></div>
+      <div class="coming-slot reveal" style="transition-delay:.2s"><span class="icon">🛍️</span><strong>FunLogic Merch</strong><p style="font-size:.75rem;margin-top:6px">Studio merch for real ones</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- FUN ZONE -->
+<section id="funzone">
+  <div class="section-inner">
+    <div class="section-tag reveal">Interactive Lab</div>
+    <h2 class="section-title reveal">The <span>Fun Zone</span></h2>
+    <div class="fun-grid">
+      <div class="fun-card glass-card clip reveal" id="quiz-card">
+        <h3>🧠 Game Dev Quiz</h3><p>Test your knowledge of game development.</p>
+        <div id="quiz-q" class="quiz-q">Loading question...</div>
+        <div id="quiz-opts" class="quiz-opts"></div>
+        <div id="quiz-result" class="quiz-result"></div>
+        <div id="quiz-score"></div>
+      </div>
+      <div class="fun-card glass-card clip reveal" style="transition-delay:.1s">
+        <h3>🎲 Game Name Generator</h3><p>Need a concept? Let us spark your imagination.</p>
+        <button class="btn btn-primary" onclick="generateName()" style="width:100%;justify-content:center">✨ Generate a Game Concept</button>
+        <div class="gen-result" id="gen-result">Click above for a random concept!</div>
+        <div style="margin-top:10px;font-size:.7rem;color:rgba(255,255,255,.2);text-align:center;font-family:'Rajdhani',sans-serif;letter-spacing:1px">Generated: <span id="gen-count">0</span> concepts</div>
+      </div>
+      <div class="fun-card glass-card clip reveal" style="transition-delay:.2s">
+        <h3>⚡ Gamer Reflex Test</h3><p>Click the target when it appears. Under 250ms = Pro Gamer.</p>
+        <div id="reflex-area" onclick="reactionClick()"><span id="reflex-txt" style="font-size:.86rem;color:rgba(255,255,255,.3);font-family:'Rajdhani',sans-serif;letter-spacing:1px">Tap to start</span></div>
+        <div id="reflex-score" style="font-size:.78rem;color:rgba(255,255,255,.3);text-align:center;font-family:'Rajdhani',sans-serif;letter-spacing:.5px"></div>
+      </div>
+      <div class="fun-card glass-card clip reveal" style="transition-delay:.3s">
+        <h3>🤔 Gamer's Dilemma</h3><p>Would you rather…</p>
+        <div id="wyr-q" style="font-weight:600;font-size:.93rem;margin-bottom:16px;line-height:1.55;color:rgba(255,255,255,.8);font-family:'Rajdhani',sans-serif">Loading...</div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-outline" onclick="wyrVote('a')" id="wyr-a" style="flex:1;font-size:.72rem;justify-content:center">Option A</button>
+          <button class="btn btn-outline" onclick="wyrVote('b')" id="wyr-b" style="flex:1;font-size:.72rem;justify-content:center">Option B</button>
+        </div>
+        <div id="wyr-result" style="margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.3);text-align:center;font-family:'Rajdhani',sans-serif"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="section-tag reveal">The Crew</div>
+    <h2 class="section-title reveal">Meet the <span>Team</span></h2>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="avatar">🎨</div><h4>Ali Ahmad Khan</h4><div class="role">Founder & Designer</div><div class="bio">Drives the studio vision and crafts every user experience from scratch.</div></div>
+      <div class="team-card reveal" style="transition-delay:.08s"><div class="avatar">📋</div><h4>Vansh</h4><div class="role">Founder & Project Lead</div><div class="bio">Keeps the studio and project running and tells the world about our games.</div></div>
+      <div class="team-card reveal" style="transition-delay:.16s"><div class="avatar">🎵</div><h4>Shaurya Chauhan</h4><div class="role">Sound Designer</div><div class="bio">Crafts the soundscapes that make our worlds feel alive.</div></div>
+      <div class="team-card reveal" style="transition-delay:.24s"><div class="avatar">🧊</div><h4>Nyasha Shrivastava</h4><div class="role">3D Artist</div><div class="bio">Sculpting worlds polygon by polygon in Blender.</div></div>
+      <div class="team-card reveal" style="transition-delay:.24s"><div class="avatar">🧊</div><h4>Ankita Tudu</h4><div class="role">Concept Artist</div><div class="bio">Creating concept and 2d art for the games.</div></div>
+      <div class="team-card reveal" style="transition-delay:.24s"><div class="avatar">🧊</div><h4>Saumya Singh</h4><div class="role">Props & Environment Artist</div><div class="bio">Giving a charm and soul to our games through art.</div></div>
+      <div class="team-card reveal" style="transition-delay:.32s"><div class="avatar">💻</div><h4>Kajal Yaduvanshi</h4><div class="role">Programmer</div><div class="bio">Supporting the backbone to the games by writing the code for them.</div></div>
+      <div class="team-card reveal" style="transition-delay:.32s"><div class="avatar">💻</div><h4>Nikunj Dixit</h4><div class="role"> Programmer</div><div class="bio">Supporting the backbone of the game with their coding skills.</div></div>
+      <div class="team-card reveal" style="transition-delay:.32s"><div class="avatar">💻</div><h4>Palak Verma</h4><div class="role"> Programmer</div><div class="bio">Supporting the backbone of the game with their coding skills.</div></div>
+      <div class="team-card reveal" style="transition-delay:.32s"><div class="avatar">💻</div><h4>TBD</h4><div class="role">QA / Tester</div><div class="bio">Furishing the end touches and making sure everything is fine.</div></div>
+      
+    </div>
+    <div class="reveal" style="margin-top:24px;padding:24px;border:1px dashed rgba(0,212,255,.12);text-align:center;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))">
+      <p style="font-size:.88rem;font-family:'Rajdhani',sans-serif;letter-spacing:.5px;color:rgba(255,255,255,.3)">Interested in joining the adventure? <a href="#contact" style="color:var(--cyan);text-decoration:none;font-weight:700">Get in touch →</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- DEVLOG / BLOG -->
+<section id="blog">
+  <div class="section-inner">
+    <div class="orb orb3"></div>
+    <div class="section-tag reveal">Devlog</div>
+    <h2 class="section-title reveal">Latest from the <span>Studio</span></h2>
+    <div class="blog-grid">
+      <div class="blog-card reveal"><div class="blog-meta"><span class="blog-date">APR 2026</span><span class="blog-tag">Launch</span></div><h3>PhysicsQuest v1 is Live!</h3><p>Our first shipped product is live on the web. 55+ levels, 4 game modes, XP system, and zero login required. A huge milestone for the team.</p><span class="read-more"></span></div>
+      <div class="blog-card reveal" style="transition-delay:.1s"><div class="blog-meta"><span class="blog-date">MAY 2026</span><span class="blog-tag">Dev Update</span></div><h3>The Last Digit — World Design Begins</h3><p>We've locked the core loop and started blockout on the first chapter. Environment design, enemy AI sketches, and the core digit-based mechanic are all underway.</p><span class="read-more"></span></div>
+      <div class="blog-card reveal" style="transition-delay:.2s"><div class="blog-meta"><span class="blog-date">APR 2026</span><span class="blog-tag">Studio</span></div><h3>Team Assembled. FunLogic Founded.</h3><p>Ten roles, one Godot project, and a whole lot of ambition. We officially became a studio ... and we're never looking back.</p><span class="read-more"></span></div>
+      <div class="blog-card reveal" style="transition-delay:.3s"><div class="blog-meta"><span class="blog-date">MAR 2026</span><span class="blog-tag">Tech</span></div><h3>Why We Chose Godot 4 Over Unity</h3><p>Open source, lightweight, and perfect for a team learning from scratch. What else to say.</p><span class="read-more"></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Say <span>Hello</span> 👋</h2>
+    <div class="contact-inner">
+      <div class="contact-info reveal">
+        <p>Whether you're a fellow indie dev, a student using PhysicsQuest, a player excited about The Last Digit, or a potential collaborator ... we'd genuinely love to hear from you.</p>
+        <div class="social-links">
+          <button class="social-btn" onclick="window.location.href='https://www.linkedin.com/in/funlogic-studio-24574b404'">🐦 Linkedin</button>
+          <button class="social-btn">💬 Discord</button>
+          <button class="social-btn">▶ YouTube</button>
+          <button class="social-btn" onclick="window.location.href='mailto:studiofunlogic@gmail.com'">📧 Email</button>
+          <button class="social-btn" onclick="window.location.href='https://www.instagram.com/funlogi_cstudio'">🔗 Instagram</button>
+        </div>
+        <div class="about-callout">
+          <p>🎮 <strong>Pro tip:</strong> Try the Konami Code ... ↑↑↓↓←→←→BA</p>
+        </div>
+      </div>
+
+
+      <form class="contact-form reveal" style="transition-delay:.1s"
+            action="https://formspree.io/f/mqendeko"
+            method="POST"
+            id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required/>
+        <input type="email" name="email" placeholder="Your Email" required/>
+        <select name="subject">
+          <option value="">What's this about?</option>
+          <option>💬 General Hello</option>
+          <option>🤝 Collaboration</option>
+          <option>⚛️ PhysicsQuest</option>
+          <option>🔢 The Last Digit</option>
+          <option>🎮 Join the Team</option>
+        </select>
+        <textarea name="message" rows="4" placeholder="Your message..." required></textarea>
+        <!-- Formspree honeypot to prevent spam -->
+        <input type="text" name="_gotcha" style="display:none"/>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="form-submit-btn">Send Message 🚀</button>
+        <div id="form-status" style="margin-top:12px;text-align:center;font-size:.82rem;font-family:'Rajdhani',sans-serif;letter-spacing:.5px;display:none"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="16,3 28,9 28,23 16,29 4,23 4,9" fill="none" stroke="rgba(0,212,255,0.6)" stroke-width="1.2"/>
+        <text x="16" y="20" text-anchor="middle" fill="rgba(0,212,255,0.9)" font-size="10" font-weight="900" font-family="Orbitron,monospace">FL</text>
+      </svg>
+    </div>
+  </div>
+  <p>© 2026 <span>FunLogic Studios</span> &nbsp;·&nbsp; Simple Ideas, Endless Adventures &nbsp;·&nbsp; Built with ♥</p>
+  <p style="color:rgba(255,255,255,.1);font-size:.72rem">Crafted by two dreamers</p>
+</footer>
+
+<!-- AI CHAT -->
+<div id="chat-bubble">
+  <div id="chat-window">
+    <div class="chat-header"><div class="chat-dot"></div><div><h4>FunLogic AI ✦</h4><span>Studio assistant ... always online, no API needed!</span></div></div>
+    <div class="chat-suggestions">
+      <button class="sug" onclick="quickAsk('What games are you making?')">Games?</button>
+      <button class="sug" onclick="quickAsk('Tell me about PhysicsQuest')">PhysicsQuest?</button>
+      <button class="sug" onclick="quickAsk('Who is on the team?')">Team?</button>
+      <button class="sug" onclick="quickAsk('Tell me about The Last Digit')">Last Digit?</button>
+    </div>
+    <div id="chat-messages"><div class="msg bot">Hey! 👋 I'm the FunLogic AI assistant ... fully offline, always ready. Ask me about our games, team, tools, or products! 🎮</div></div>
+    <div class="chat-input-row"><input id="chat-input" type="text" placeholder="Ask about FunLogic..."/><button id="chat-send">➤</button></div>
+  </div>
+  <button id="chat-toggle" onclick="document.getElementById('chat-window').classList.toggle('open')">💬<div class="chat-notif"></div></button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ══════════════════════════════════════════════════════
+//  CUSTOM CURSOR
+// ══════════════════════════════════════════════════════
+const cursor = document.getElementById('cursor');
+let mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+document.querySelectorAll('a,button,.game-card,.team-card,.blog-card,.fun-card,.stat-card,.tab,.quiz-opt,.sug,.social-btn,.game-play-btn,.placeholder-add').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px'});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px'});
+});
+
+// ══════════════════════════════════════════════════════
+//  LOADING SCREEN — Spaceship cinematic
+// ══════════════════════════════════════════════════════
+(function initLoader(){
+  const lc = document.getElementById('loader-canvas');
+  const lctx = lc.getContext('2d');
+  lc.width = window.innerWidth; lc.height = window.innerHeight;
+
+  // Loader stars
+  const lStars = Array.from({length:300},()=>({x:Math.random()*lc.width,y:Math.random()*lc.height,s:Math.random()*2,a:Math.random()}));
+  
+  // Spaceship shape (simplified CSS-drawn using canvas)
+  let shipY = lc.height * 0.65;
+  let engineGlow = 0;
+  let frameCount = 0;
+  let loaderDone = false;
+
+  function drawShip(ctx, cx, cy, scale, glow) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(scale, scale);
+
+    // Engine glow
+    const grad = ctx.createRadialGradient(0, 30, 0, 0, 30, 60 + glow * 40);
+    grad.addColorStop(0, `rgba(0,212,255,${0.4 + glow * 0.4})`);
+    grad.addColorStop(0.3, `rgba(100,50,255,${0.2 + glow * 0.2})`);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.ellipse(0, 40, 40+glow*20, 60+glow*30, 0, 0, Math.PI*2); ctx.fill();
+
+    // Exhaust flames
+    for(let i=-2;i<=2;i++){
+      const fg = ctx.createLinearGradient(i*8, 15, i*8, 60+glow*40);
+      fg.addColorStop(0,'rgba(0,212,255,0.8)');
+      fg.addColorStop(0.4,'rgba(100,50,255,0.5)');
+      fg.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=fg;
+      ctx.beginPath();ctx.ellipse(i*8,30+glow*10,3,20+glow*20+Math.random()*10,0,0,Math.PI*2);ctx.fill();
+    }
+
+    // Main body
+    const bodyGrad = ctx.createLinearGradient(-30,-40,30,20);
+    bodyGrad.addColorStop(0,'#1a3a5e');bodyGrad.addColorStop(.5,'#0d2040');bodyGrad.addColorStop(1,'#081428');
+    ctx.fillStyle=bodyGrad;
+    ctx.beginPath();ctx.moveTo(0,-45);ctx.lineTo(18,-10);ctx.lineTo(22,10);ctx.lineTo(14,18);ctx.lineTo(-14,18);ctx.lineTo(-22,10);ctx.lineTo(-18,-10);ctx.closePath();ctx.fill();
+
+    // Hull detail lines
+    ctx.strokeStyle='rgba(0,212,255,0.3)';ctx.lineWidth=.8;
+    ctx.beginPath();ctx.moveTo(0,-45);ctx.lineTo(0,18);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-10,-20);ctx.lineTo(10,-20);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-16,0);ctx.lineTo(16,0);ctx.stroke();
+
+    // Wing strakes
+    const wGrad = ctx.createLinearGradient(-50,0,0,0);
+    wGrad.addColorStop(0,'rgba(10,30,60,0)');wGrad.addColorStop(1,'rgba(10,30,60,0.9)');
+    ctx.fillStyle=wGrad;
+    ctx.beginPath();ctx.moveTo(-22,-5);ctx.lineTo(-55,20);ctx.lineTo(-40,22);ctx.lineTo(-14,10);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(0,212,255,0.2)';ctx.beginPath();ctx.moveTo(-22,-5);ctx.lineTo(-55,20);ctx.stroke();
+    const wGrad2 = ctx.createLinearGradient(0,0,50,0);
+    wGrad2.addColorStop(0,'rgba(10,30,60,0.9)');wGrad2.addColorStop(1,'rgba(10,30,60,0)');
+    ctx.fillStyle=wGrad2;
+    ctx.beginPath();ctx.moveTo(22,-5);ctx.lineTo(55,20);ctx.lineTo(40,22);ctx.lineTo(14,10);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(0,212,255,0.2)';ctx.beginPath();ctx.moveTo(22,-5);ctx.lineTo(55,20);ctx.stroke();
+
+    // Cockpit
+    const cGrad = ctx.createRadialGradient(0,-30,0,0,-25,14);
+    cGrad.addColorStop(0,'rgba(0,180,255,0.6)');cGrad.addColorStop(0.5,'rgba(0,100,180,0.3)');cGrad.addColorStop(1,'rgba(0,50,100,0.1)');
+    ctx.fillStyle=cGrad;
+    ctx.strokeStyle='rgba(0,212,255,0.7)';ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.ellipse(0,-30,10,14,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+
+    // Running lights
+    const t=Date.now()*.003;
+    ctx.fillStyle=`rgba(0,255,136,${0.5+Math.sin(t)*0.5})`;
+    ctx.beginPath();ctx.arc(-22,2,2,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=`rgba(255,61,107,${0.5+Math.sin(t+Math.PI)*0.5})`;
+    ctx.beginPath();ctx.arc(22,2,2,0,Math.PI*2);ctx.fill();
+
+    ctx.restore();
+  }
+
+  // Hyperspace lines
+  const hyperLines = Array.from({length:80},()=>({
+    angle: Math.random()*Math.PI*2,
+    dist: Math.random()*200+50,
+    len: Math.random()*80+20,
+    speed: Math.random()*8+4,
+    opacity: Math.random()*.6+.2
+  }));
+
+  let startTime = Date.now();
+
+  function animLoader(){
+    if(loaderDone) return;
+    frameCount++;
+    const elapsed = (Date.now()-startTime)/1000;
+    const progress = Math.min(elapsed/5.5,1);
+    
+    lctx.fillStyle='rgba(0,0,3,0.85)';
+    lctx.fillRect(0,0,lc.width,lc.height);
+
+    const cx=lc.width/2, cy=lc.height/2;
+
+    // Stars
+    lStars.forEach(s=>{
+      lctx.fillStyle=`rgba(255,255,255,${s.a*0.7})`;
+      lctx.beginPath();lctx.arc(s.x,s.y,s.s*.6,0,Math.PI*2);lctx.fill();
+    });
+
+    // Hyperspace streaks (early phase)
+    if(elapsed<2.5){
+      const intensity = Math.max(0,1-(elapsed/2));
+      hyperLines.forEach(l=>{
+        l.dist -= l.speed * intensity;
+        if(l.dist<10) l.dist=Math.random()*300+100;
+        const x1=cx+Math.cos(l.angle)*l.dist;
+        const y1=cy+Math.sin(l.angle)*l.dist;
+        const x2=cx+Math.cos(l.angle)*(l.dist+l.len*intensity*3);
+        const y2=cy+Math.sin(l.angle)*(l.dist+l.len*intensity*3);
+        lctx.strokeStyle=`rgba(0,212,255,${l.opacity*intensity})`;
+        lctx.lineWidth=.8;
+        lctx.beginPath();lctx.moveTo(x1,y1);lctx.lineTo(x2,y2);lctx.stroke();
+      });
+    }
+
+    // Spaceship entrance
+    const shipPhase = Math.max(0,(elapsed-0.5)/2);
+    if(shipPhase>0){
+      const targetY = cy * 0.4;
+      const sy = lc.height*1.2 - (lc.height*1.2-targetY)*Math.min(shipPhase,1);
+      engineGlow = 0.5+Math.sin(elapsed*8)*0.3;
+      const shipScale = Math.min(shipPhase*1.2,1) * 1.6;
+      drawShip(lctx, cx, sy, shipScale, engineGlow);
+
+      // Ship glow on background
+      const sgGrad = lctx.createRadialGradient(cx,sy,0,cx,sy,150);
+      sgGrad.addColorStop(0,`rgba(0,100,200,${0.08*Math.min(shipPhase,1)})`);
+      sgGrad.addColorStop(1,'rgba(0,0,0,0)');
+      lctx.fillStyle=sgGrad;
+      lctx.fillRect(0,0,lc.width,lc.height);
+    }
+
+    // Update percentage
+    const pct = Math.floor(progress*100);
+    document.getElementById('loader-pct').textContent=`LOADING SYSTEMS... ${pct}%`;
+
+    requestAnimationFrame(animLoader);
+  }
+  animLoader();
+
+  // Hide loader after animation
+  setTimeout(()=>{
+    const loader=document.getElementById('loader');
+    loader.classList.add('hide');
+    loaderDone=true;
+    setTimeout(()=>{loader.style.display='none';document.body.style.overflow='';},900);
+  },5800);
+})();
+
+// Prevent scroll during load
+document.body.style.overflow='hidden';
+
+// ══════════════════════════════════════════════════════
+//  INTERACTIVE 3D ROBOT MASCOT (Canvas)
+// ══════════════════════════════════════════════════════
+(function initRobot(){
+  const rc = document.getElementById('robot-canvas');
+  const rctx = rc.getContext('2d');
+  let mouseX=0,mouseY=0;
+  let robotX=rc.width/2, robotY=rc.height/2;
+  let bobTime=0;
+  let eyeTargetX=0,eyeTargetY=0;
+  let waveArm=0,isWaving=false,waveStartTime=0;
+  let blinkTimer=0,isBlinking=false,blinkDur=0;
+  let lastMoveTime=Date.now();
+  let greetShown=false;
+
+  document.addEventListener('mousemove',e=>{
+    const rect=rc.getBoundingClientRect();
+    mouseX=e.clientX-rect.left-robotX;
+    mouseY=e.clientY-rect.top-robotY;
+    lastMoveTime=Date.now();
+  });
+
+  rc.addEventListener('click',()=>{
+    isWaving=true;waveStartTime=Date.now();
+  });
+
+  function drawRobot(ctx,cx,cy,bobOffset,eyeX,eyeY,armAngle,blink){
+    ctx.save();ctx.translate(cx,cy+bobOffset);
+
+    // Body shadow
+    const shad=ctx.createRadialGradient(0,55,0,0,55,60);
+    shad.addColorStop(0,'rgba(0,212,255,0.08)');shad.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=shad;ctx.beginPath();ctx.ellipse(0,60,50,15,0,0,Math.PI*2);ctx.fill();
+
+    // LEFT ARM (waving)
+    ctx.save();ctx.translate(-28,-5);
+    const waveRot = isWaving ? -Math.PI/3 + Math.sin(armAngle)*0.5 : -0.15+Math.sin(bobTime*.5)*0.05;
+    ctx.rotate(waveRot);
+    ctx.fillStyle='#0d2a4a';ctx.strokeStyle='rgba(0,212,255,0.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.roundRect(-6,0,12,28,3);ctx.fill();ctx.stroke();
+    ctx.fillStyle='rgba(0,212,255,0.15)';ctx.beginPath();ctx.arc(0,30,8,0,Math.PI*2);ctx.fill();ctx.stroke();
+    // Hand glow when waving
+    if(isWaving){ctx.fillStyle=`rgba(0,212,255,${0.3+Math.sin(armAngle)*0.2})`;ctx.beginPath();ctx.arc(0,30,12,0,Math.PI*2);ctx.fill();}
+    ctx.restore();
+
+    // RIGHT ARM
+    ctx.save();ctx.translate(28,-5);
+    ctx.rotate(0.15+Math.sin(bobTime*.5+Math.PI)*0.05);
+    ctx.fillStyle='#0d2a4a';ctx.strokeStyle='rgba(0,212,255,0.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.roundRect(-6,0,12,28,3);ctx.fill();ctx.stroke();
+    ctx.fillStyle='rgba(0,212,255,0.15)';ctx.beginPath();ctx.arc(0,30,8,0,Math.PI*2);ctx.fill();ctx.stroke();
+    ctx.restore();
+
+    // Torso
+    const tGrad=ctx.createLinearGradient(-34,-20,34,50);
+    tGrad.addColorStop(0,'#112240');tGrad.addColorStop(.5,'#091830');tGrad.addColorStop(1,'#060f20');
+    ctx.fillStyle=tGrad;ctx.strokeStyle='rgba(0,212,255,0.35)';ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.roundRect(-30,-20,60,70,6);ctx.fill();ctx.stroke();
+
+    // Chest panel
+    ctx.fillStyle='rgba(0,212,255,0.06)';ctx.strokeStyle='rgba(0,212,255,0.2)';ctx.lineWidth=.8;
+    ctx.beginPath();ctx.roundRect(-18,-10,36,36,3);ctx.fill();ctx.stroke();
+    
+    // Chest light matrix
+    const lightColors=['rgba(0,212,255,','rgba(0,255,136,','rgba(255,61,107,'];
+    for(let r=0;r<3;r++){for(let c=0;c<3;c++){
+      const lc2=lightColors[(r+c)%3];
+      const pulse=0.3+Math.sin(bobTime*2+r*1.5+c)*0.3;
+      ctx.fillStyle=lc2+pulse+')';
+      ctx.beginPath();ctx.arc(-10+c*10,-4+r*10,2.5,0,Math.PI*2);ctx.fill();
+    }}
+
+    // Neck
+    ctx.fillStyle='#091828';ctx.strokeStyle='rgba(0,212,255,0.25)';ctx.lineWidth=.8;
+    ctx.beginPath();ctx.roundRect(-10,-34,20,16,2);ctx.fill();ctx.stroke();
+
+    // HEAD
+    const hGrad=ctx.createLinearGradient(-36,-80,36,-34);
+    hGrad.addColorStop(0,'#162f52');hGrad.addColorStop(.5,'#0f2040');hGrad.addColorStop(1,'#091530');
+    ctx.fillStyle=hGrad;ctx.strokeStyle='rgba(0,212,255,0.45)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.roundRect(-34,-82,68,48,8);ctx.fill();ctx.stroke();
+
+    // Head glow top
+    ctx.fillStyle='rgba(0,212,255,0.03)';
+    ctx.beginPath();ctx.roundRect(-34,-82,68,16,8);ctx.fill();
+
+    // Antenna
+    ctx.strokeStyle='rgba(0,212,255,0.5)';ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(0,-82);ctx.lineTo(0,-100);ctx.stroke();
+    const antPulse=0.4+Math.sin(bobTime*3)*0.4;
+    ctx.fillStyle=`rgba(0,212,255,${antPulse})`;
+    ctx.beginPath();ctx.arc(0,-102,4,0,Math.PI*2);ctx.fill();
+    const antGlow=ctx.createRadialGradient(0,-102,0,0,-102,16);
+    antGlow.addColorStop(0,`rgba(0,212,255,${antPulse*0.4})`);antGlow.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=antGlow;ctx.beginPath();ctx.arc(0,-102,16,0,Math.PI*2);ctx.fill();
+
+    // EYES
+    const eyeMaxShift=6;
+    const eX=Math.max(-eyeMaxShift,Math.min(eyeMaxShift,eyeX*.08));
+    const eY=Math.max(-3,Math.min(3,eyeY*.06));
+
+    // Eye sockets
+    ctx.fillStyle='rgba(0,0,0,0.6)';ctx.strokeStyle='rgba(0,212,255,0.25)';ctx.lineWidth=.8;
+    ctx.beginPath();ctx.roundRect(-28,-70,24,20,4);ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.roundRect(4,-70,24,20,4);ctx.fill();ctx.stroke();
+
+    if(!blink){
+      // Eye pupils/iris
+      const eyeGrad1=ctx.createRadialGradient(-16+eX,-60+eY,0,-16+eX,-60+eY,8);
+      eyeGrad1.addColorStop(0,'rgba(0,212,255,0.95)');eyeGrad1.addColorStop(.5,'rgba(0,100,200,0.8)');eyeGrad1.addColorStop(1,'rgba(0,30,80,0.3)');
+      ctx.fillStyle=eyeGrad1;ctx.beginPath();ctx.ellipse(-16+eX,-60+eY,7,8,0,0,Math.PI*2);ctx.fill();
+      const eyeGrad2=ctx.createRadialGradient(16+eX,-60+eY,0,16+eX,-60+eY,8);
+      eyeGrad2.addColorStop(0,'rgba(0,212,255,0.95)');eyeGrad2.addColorStop(.5,'rgba(0,100,200,0.8)');eyeGrad2.addColorStop(1,'rgba(0,30,80,0.3)');
+      ctx.fillStyle=eyeGrad2;ctx.beginPath();ctx.ellipse(16+eX,-60+eY,7,8,0,0,Math.PI*2);ctx.fill();
+      // Pupil
+      ctx.fillStyle='rgba(0,0,0,0.8)';
+      ctx.beginPath();ctx.arc(-16+eX,-60+eY,3,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(16+eX,-60+eY,3,0,Math.PI*2);ctx.fill();
+      // Eye shine
+      ctx.fillStyle='rgba(255,255,255,0.6)';
+      ctx.beginPath();ctx.arc(-14+eX,-63+eY,1.5,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(18+eX,-63+eY,1.5,0,Math.PI*2);ctx.fill();
+      // Eye scan line
+      ctx.strokeStyle=`rgba(0,212,255,${0.2+Math.sin(bobTime*4)*0.2})`;ctx.lineWidth=.5;
+      ctx.beginPath();ctx.moveTo(-27,-60+eY);ctx.lineTo(-5,-60+eY);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(5,-60+eY);ctx.lineTo(27,-60+eY);ctx.stroke();
+    } else {
+      // Blink lines
+      ctx.strokeStyle='rgba(0,212,255,0.6)';ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(-26,-60);ctx.lineTo(-6,-60);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(6,-60);ctx.lineTo(26,-60);ctx.stroke();
+    }
+
+    // MOUTH / speaker grille
+    for(let i=0;i<5;i++){
+      const speaking=0.2+Math.sin(bobTime*6+i)*0.15;
+      ctx.fillStyle=`rgba(0,212,255,${speaking})`;
+      ctx.beginPath();ctx.roundRect(-14+i*6,-47,3,8+Math.sin(bobTime*5+i)*4,1);ctx.fill();
+    }
+
+    // LEGS
+    ctx.fillStyle='#091828';ctx.strokeStyle='rgba(0,212,255,0.3)';ctx.lineWidth=.8;
+    ctx.beginPath();ctx.roundRect(-20,48,14,28,3);ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.roundRect(6,48,14,28,3);ctx.fill();ctx.stroke();
+    // Feet
+    ctx.fillStyle='#061220';ctx.strokeStyle='rgba(0,212,255,0.25)';
+    ctx.beginPath();ctx.roundRect(-24,74,20,10,3);ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.roundRect(4,74,20,10,3);ctx.fill();ctx.stroke();
+
+    // Overall body glow
+    const bodyGlowGrad=ctx.createRadialGradient(0,-20,0,0,-20,80);
+    bodyGlowGrad.addColorStop(0,'rgba(0,212,255,0)');bodyGlowGrad.addColorStop(.6,'rgba(0,212,255,0)');bodyGlowGrad.addColorStop(1,`rgba(0,212,255,${0.02+Math.sin(bobTime)*0.01})`);
+    ctx.fillStyle=bodyGlowGrad;ctx.beginPath();ctx.arc(0,-20,80,0,Math.PI*2);ctx.fill();
+
+    ctx.restore();
+  }
+
+  function robotLoop(){
+    rctx.clearRect(0,0,rc.width,rc.height);
+    bobTime+=0.03;
+    const bob=Math.sin(bobTime)*6;
+
+    // Eye tracking
+    eyeTargetX+=(mouseX-eyeTargetX)*.08;
+    eyeTargetY+=(mouseY-eyeTargetY)*.08;
+
+    // Auto-blink
+    blinkTimer++;
+    if(!isBlinking&&blinkTimer>180+Math.random()*120){isBlinking=true;blinkDur=8;blinkTimer=0;}
+    if(isBlinking){blinkDur--;if(blinkDur<=0)isBlinking=false;}
+
+    // Wave on click
+    if(isWaving){
+      const wt=(Date.now()-waveStartTime)/1000;
+      waveArm=wt*6;
+      if(wt>1.8)isWaving=false;
+    }
+
+    // Auto-wave if idle
+    if(Date.now()-lastMoveTime>5000&&!isWaving){isWaving=true;waveStartTime=Date.now();lastMoveTime=Date.now();}
+
+    drawRobot(rctx,robotX,robotY,bob,eyeTargetX,eyeTargetY,waveArm,isBlinking);
+    requestAnimationFrame(robotLoop);
+  }
+  robotLoop();
+})();
+
+// ══════════════════════════════════════════════════════
+//  3D UNIVERSE BACKGROUND (Three.js)
+// ══════════════════════════════════════════════════════
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,2000);
+cam.position.set(0,0,60);
+const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bg'),antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+scene.fog=new THREE.FogExp2(0x02050f,0.0015);
+
+// Multi-layer starfield
+function makeStars(count,spread,size,opacity,color){
+  const g=new THREE.BufferGeometry();
+  const p=new Float32Array(count*3);
+  for(let i=0;i<count*3;i++)p[i]=(Math.random()-.5)*spread;
+  g.setAttribute('position',new THREE.BufferAttribute(p,3));
+  return new THREE.Points(g,new THREE.PointsMaterial({color,size,transparent:true,opacity,sizeAttenuation:true}));
+}
+scene.add(makeStars(4000,2000,.35,.55,0xffffff),makeStars(1500,1000,.65,.45,0xaad4ff),makeStars(500,500,1.1,.75,0xffeedd),makeStars(200,300,2,.9,0xffffff));
+
+// Nebula clouds
+function makeNebula(x,y,z,color,size,op){
+  const c=document.createElement('canvas');c.width=c.height=256;
+  const ctx=c.getContext('2d');
+  const g=ctx.createRadialGradient(128,128,0,128,128,128);
+  g.addColorStop(0,`rgba(${color},${op})`);g.addColorStop(.35,`rgba(${color},${op*.25})`);g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,256,256);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
+  sp.position.set(x,y,z);sp.scale.set(size,size,1);return sp;
+}
+scene.add(
+  makeNebula(-80,30,-200,'0,80,220',340,.22),makeNebula(100,-20,-260,'80,0,180',420,.16),
+  makeNebula(20,60,-190,'0,160,255',300,.14),makeNebula(-50,-60,-230,'180,40,90',380,.12),
+  makeNebula(140,40,-170,'40,0,140',260,.18),makeNebula(-120,10,-200,'0,50,160',320,.15),
+  makeNebula(60,-80,-220,'0,200,180',280,.1)
+);
+
+// Planet factory
+function makePlanet(radius,c1,c2,x,y,z,ring,atm){
+  const group=new THREE.Group();
+  const geo=new THREE.SphereGeometry(radius,64,64);
+  const cv=document.createElement('canvas');cv.width=cv.height=512;
+  const cx=cv.getContext('2d');
+  const grd=cx.createLinearGradient(0,0,512,512);
+  grd.addColorStop(0,'#'+c1.toString(16).padStart(6,'0'));
+  grd.addColorStop(.5,'#'+Math.floor(c1*.7).toString(16).padStart(6,'0'));
+  grd.addColorStop(1,'#'+c2.toString(16).padStart(6,'0'));
+  cx.fillStyle=grd;cx.fillRect(0,0,512,512);
+  for(let i=0;i<1200;i++){cx.fillStyle=`rgba(255,255,255,${Math.random()*.04})`;cx.beginPath();cx.arc(Math.random()*512,Math.random()*512,Math.random()*14+1,0,Math.PI*2);cx.fill();}
+  const mat=new THREE.MeshPhongMaterial({map:new THREE.CanvasTexture(cv),emissive:c1,emissiveIntensity:.06,specular:new THREE.Color(0x334466),shininess:18});
+  group.add(new THREE.Mesh(geo,mat));
+  if(atm){
+    [[1.1,.08],[1.2,.035]].forEach(([s,o])=>{group.add(new THREE.Mesh(new THREE.SphereGeometry(radius*s,32,32),new THREE.MeshPhongMaterial({color:c1,transparent:true,opacity:o,side:THREE.FrontSide,depthWrite:false,blending:THREE.AdditiveBlending})));});
+  }
+  if(ring){
+    [[1.45,2.7,.22],[1.3,1.5,.07]].forEach(([ri,ro,o])=>{
+      const r=new THREE.Mesh(new THREE.RingGeometry(radius*ri,radius*ro,80),new THREE.MeshBasicMaterial({color:c1,side:THREE.DoubleSide,transparent:true,opacity:o,blending:THREE.AdditiveBlending}));
+      r.rotation.x=Math.PI*.42;group.add(r);
+    });
+  }
+  // Glow sprite
+  const glC=document.createElement('canvas');glC.width=glC.height=256;
+  const gc=glC.getContext('2d');
+  const gg=gc.createRadialGradient(128,128,0,128,128,128);
+  const r=(c1>>16)&0xff,g=(c1>>8)&0xff,b=c1&0xff;
+  gg.addColorStop(0,`rgba(${r},${g},${b},0.45)`);gg.addColorStop(.3,`rgba(${r},${g},${b},0.14)`);gg.addColorStop(1,'rgba(0,0,0,0)');
+  gc.fillStyle=gg;gc.fillRect(0,0,256,256);
+  const gs=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(glC),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
+  gs.scale.set(radius*7,radius*7,1);group.add(gs);
+  group.position.set(x,y,z);
+  group.userData={rotY:(Math.random()-.5)*.004+.001,rotX:(Math.random()-.5)*.001,floatSpeed:Math.random()*.0009+.0003,floatAmp:Math.random()*3+1.5,baseY:y,t:Math.random()*Math.PI*2,mesh:group.children[0]};
+  return group;
+}
+
+const planets=[];
+const p1=makePlanet(18,0x1a4a8a,0x0a2040,-55,10,-120,true,true);planets.push(p1);scene.add(p1);
+const p2=makePlanet(8,0x4a1a6a,0x20082a,60,-15,-100,false,true);planets.push(p2);scene.add(p2);
+const p3=makePlanet(12,0x1a5a3a,0x082018,40,25,-140,false,true);planets.push(p3);scene.add(p3);
+const p4=makePlanet(5,0x6a3a1a,0x2a1208,-40,-25,-90,false,false);planets.push(p4);scene.add(p4);
+
+// Lights
+scene.add(new THREE.AmbientLight(0x112244,.8));
+const sunLight=new THREE.DirectionalLight(0x4488ff,1.8);sunLight.position.set(50,30,-50);scene.add(sunLight);
+const rimLight=new THREE.PointLight(0x7c3aed,1.5,300);rimLight.position.set(-80,20,-60);scene.add(rimLight);
+const accentLight=new THREE.PointLight(0x00d4ff,.8,200);accentLight.position.set(40,-20,-40);scene.add(accentLight);
+
+// Asteroid belt
+function makeAsteroidBelt(){
+  const geo=new THREE.BufferGeometry();
+  const pos=new Float32Array(300*3);
+  for(let i=0;i<300;i++){const a=Math.random()*Math.PI*2,r=50+Math.random()*20;pos[i*3]=Math.cos(a)*r;pos[i*3+1]=(Math.random()-.5)*6;pos[i*3+2]=Math.sin(a)*r-150;}
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  return new THREE.Points(geo,new THREE.PointsMaterial({color:0x885544,size:1.2,transparent:true,opacity:.5}));
+}
+scene.add(makeAsteroidBelt());
+
+// Mouse parallax
+let mouseParallaxX=0,mouseParallaxY=0;
+document.addEventListener('mousemove',e=>{mouseParallaxX=(e.clientX/innerWidth-.5)*2;mouseParallaxY=(e.clientY/innerHeight-.5)*2;});
+
+window.addEventListener('resize',()=>{
+  cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+});
+
+let t=0;
+function animateBg(){
+  requestAnimationFrame(animateBg);
+  t+=.004;
+  scene.children.find(c=>c.type==='Points')&&(scene.children.filter(c=>c.type==='Points').forEach((s,i)=>{s.rotation.y+=.00015*(i+1);s.rotation.x+=.00005;}));
+  planets.forEach(p=>{
+    p.userData.t+=p.userData.floatSpeed;
+    p.position.y=p.userData.baseY+Math.sin(p.userData.t)*p.userData.floatAmp;
+    p.rotation.y+=p.userData.rotY;
+    p.rotation.x+=p.userData.rotX;
+  });
+  cam.position.x+=(mouseParallaxX*4-cam.position.x)*.02;
+  cam.position.y+=(-mouseParallaxY*2-cam.position.y)*.02;
+  cam.lookAt(0,0,0);
+  renderer.render(scene,cam);
+}
+animateBg();
+
+// ══════════════════════════════════════════════════════
+//  NAV SCROLL EFFECT
+// ══════════════════════════════════════════════════════
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',scrollY>50);});
+
+// ══════════════════════════════════════════════════════
+//  SCROLL REVEAL
+// ══════════════════════════════════════════════════════
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ══════════════════════════════════════════════════════
+//  GAME FILTER TABS
+// ══════════════════════════════════════════════════════
+function filterGames(cat,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.game-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';
+  });
+}
+
+// ══════════════════════════════════════════════════════
+//  3D CARD TILT
+// ══════════════════════════════════════════════════════
+document.querySelectorAll('.game-card,.team-card,.stat-card,.blog-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(600px) rotateY(${x*10}deg) rotateX(${-y*6}deg) translateY(-6px)`;
+    card.style.transition='transform .05s';
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.transition='transform .4s';});
+});
+
+// ══════════════════════════════════════════════════════
+//  QUIZ
+// ══════════════════════════════════════════════════════
+const quizData=[
+  {q:"What game engine does FunLogic Studio use?",opts:["Unity","Unreal Engine","Godot 4","GameMaker"],ans:2},
+  {q:"What is FunLogic's first live product?",opts:["The Last Digit","Night Shift","PhysicsQuest","Arena Survivor"],ans:2},
+  {q:"Which tool does FunLogic use for 3D modeling?",opts:["Maya","Cinema 4D","Blender","ZBrush"],ans:2},
+  {q:"What is FunLogic's tagline?",opts:["Play Beyond Limits","Simple Ideas, Endless Adventure","Games That Matter","Code. Create. Conquer."],ans:1},
+  {q:"What genre is The Last Digit?",opts:["Horror","3D Sci-Fi Survival","Puzzle Platformer","Battle Royale"],ans:1},
+];
+let qIdx=0,score=0,answered=false;
+function loadQuiz(){
+  answered=false;
+  const q=quizData[qIdx%quizData.length];
+  document.getElementById('quiz-q').textContent=q.q;
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='quiz-opt';b.textContent=o;
+    b.onclick=()=>{if(answered)return;answered=true;b.classList.add(i===q.ans?'correct':'wrong');if(i!==q.ans)opts.children[q.ans].classList.add('correct');if(i===q.ans)score++;document.getElementById('quiz-result').textContent=i===q.ans?'✅ Correct!':'❌ Not quite!';document.getElementById('quiz-score').textContent=`Score: ${score}/${Math.ceil((qIdx+1)/1)} | Streak ongoing`;setTimeout(()=>{qIdx++;loadQuiz();},1400);};
+    opts.appendChild(b);
+  });
+  document.getElementById('quiz-result').textContent='';
+}
+loadQuiz();
+
+// ══════════════════════════════════════════════════════
+//  GAME NAME GENERATOR
+// ══════════════════════════════════════════════════════
+const adjectives=['Neon','Void','Crimson','Stellar','Quantum','Phantom','Cursed','Ancient','Hollow','Blazing','Frozen','Solar','Shadow','Electric','Forgotten'];
+const nouns=['Rift','Protocol','Nexus','Genesis','Pulse','Horizon','Cipher','Echo','Revenant','Dominion','Siege','Paradox','Bastion','Vortex','Exodus'];
+const genres=['Survival RPG','Tower Defense','Roguelite','Metroidvania','Action Platformer','Space Sim','Horror Puzzle','Open World','Tactical Shooter','Card Battler'];
+let genCount=0;
+function generateName(){
+  const a=adjectives[Math.floor(Math.random()*adjectives.length)];
+  const n=nouns[Math.floor(Math.random()*nouns.length)];
+  const g=genres[Math.floor(Math.random()*genres.length)];
+  genCount++;
+  document.getElementById('gen-result').textContent=`"${a} ${n}" — ${g}`;
+  document.getElementById('gen-count').textContent=genCount;
+}
+
+// ══════════════════════════════════════════════════════
+//  REFLEX TEST
+// ══════════════════════════════════════════════════════
+let reflexState='idle',reflexStart=0,reflexTimer=null,reflexBest=null;
+function reactionClick(){
+  const area=document.getElementById('reflex-area'),txt=document.getElementById('reflex-txt');
+  if(reflexState==='idle'){
+    txt.textContent='GET READY...';area.style.background='rgba(255,215,0,.04)';reflexState='waiting';
+    reflexTimer=setTimeout(()=>{area.style.background='rgba(0,255,136,.1)';area.style.borderColor='#00ff88';txt.style.color='#00ff88';txt.textContent='CLICK NOW!';reflexStart=Date.now();reflexState='go';},1200+Math.random()*2800);
+  } else if(reflexState==='waiting'){
+    clearTimeout(reflexTimer);txt.textContent='TOO EARLY!';txt.style.color='#ff6b8a';area.style.background='rgba(255,61,107,.08)';reflexState='idle';
+    setTimeout(()=>{txt.textContent='Tap to start';txt.style.color='rgba(255,255,255,.3)';area.style.background='';area.style.borderColor='';},1200);
+  } else if(reflexState==='go'){
+    const ms=Date.now()-reflexStart;area.style.background='rgba(0,212,255,.05)';area.style.borderColor='';txt.style.color='rgba(255,255,255,.3)';txt.textContent='Tap again';reflexState='idle';
+    const msg=ms<200?'🔥 LEGENDARY!':ms<250?'⚡ PRO GAMER!':ms<350?'😎 SOLID!':ms<500?'👍 NOT BAD!':'🐢 KEEP PRACTICING!';
+    if(!reflexBest||ms<reflexBest)reflexBest=ms;
+    document.getElementById('reflex-score').textContent=`${ms}ms — ${msg} | BEST: ${reflexBest}ms`;
+  }
+}
+
+// ══════════════════════════════════════════════════════
+//  WOULD YOU RATHER
+// ══════════════════════════════════════════════════════
+const wyrs=[
+  {q:"Play a game with incredible graphics but terrible gameplay OR amazing gameplay but 8-bit graphics?",a:"💎 Incredible Graphics",b:"🕹️ Amazing Gameplay"},
+  {q:"Always play as the hero OR always play as the villain?",a:"🦸 Always the Hero",b:"😈 Always the Villain"},
+  {q:"Have infinite lives but no checkpoints OR one life with a checkpoint every 10 seconds?",a:"♾️ Infinite Lives",b:"⏱️ Checkpoint Every 10s"},
+  {q:"Only play games in VR OR only play handheld games forever?",a:"🥽 VR Only",b:"📱 Handheld Only"},
+  {q:"Work at FunLogic Studio for free OR play The Last Digit before anyone else?",a:"🎮 Join FunLogic!",b:"🔢 Early Access"},
+];
+let wyrI=Math.floor(Math.random()*wyrs.length);
+function loadWyr(){const w=wyrs[wyrI];document.getElementById('wyr-q').textContent=w.q;document.getElementById('wyr-a').textContent=w.a;document.getElementById('wyr-b').textContent=w.b;document.getElementById('wyr-result').textContent='';}
+function wyrVote(side){const w=wyrs[wyrI];document.getElementById('wyr-result').textContent=`YOU CHOSE: ${side==='a'?w.a:w.b} 🎯`;setTimeout(()=>{wyrI=(wyrI+1)%wyrs.length;loadWyr();},1600);}
+loadWyr();
+
+// ══════════════════════════════════════════════════════
+//  CONTACT FORM (Formspree)
+// ══════════════════════════════════════════════════════
+document.getElementById('contact-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('form-submit-btn');
+  const status=document.getElementById('form-status');
+  btn.textContent='Sending...';btn.disabled=true;
+  const data=new FormData(this);
+  try{
+    const res=await fetch(this.action,{method:'POST',body:data,headers:{Accept:'application/json'}});
+    if(res.ok){status.style.display='block';status.style.color='var(--green)';status.textContent='✅ Message sent! We\'ll get back to you soon.';this.reset();}
+    else{status.style.display='block';status.style.color='var(--pink)';status.textContent='❌ Something went wrong. Try again.';}
+  }catch{status.style.display='block';status.style.color='var(--pink)';status.textContent='❌ Network error. Check your connection.';}
+  btn.textContent='Send Message 🚀';btn.disabled=false;
+});
+
+// ══════════════════════════════════════════════════════
+//  AI CHAT — Fully Offline Q&A Engine (no API key needed)
+//  ──────────────────────────────────────────────────────
+//  HOW TO ADD YOUR OWN RESPONSES:
+//  Each entry in the QA_BANK array is an object with:
+//    keywords : array of words/phrases to match (lowercase)
+//    response : the bot reply shown to the user
+//
+//  Example:
+//  { keywords:['release date','when launch'], response:"We're targeting a 2026 release for The Last Digit! 🔢" },
+//
+//  Add your custom entries anywhere in the USER CUSTOM RESPONSES
+//  section below the comment that says "ADD YOUR RESPONSES HERE".
+// ══════════════════════════════════════════════════════
+
+const QA_BANK = [
+
+  // ── STUDIO ────────────────────────────────────────────
+  { keywords:['what is funlogic','about funlogic','tell me about funlogic','who are you','what are you'],
+    response:"FunLogic Studio is a passionate indie game development studio! 🎮 Our tagline says it all: \"Simple Ideas, Endless Adventure.\" We're a ten+ person team building games and interactive experiences from scratch using Godot 4." },
+
+  { keywords:['when was funlogic','founded','started','history'],
+    response:"FunLogic Studio was founded in early 2026 by two dreamers who just couldn't stop thinking about making games. 🚀 We assembled the team, picked up Godot 4, and never looked back!" },
+
+  { keywords:['tagline','slogan','motto'],
+    response:"Our motto is: \"Simple Ideas, Endless Adventure\" ✨ — It captures exactly how we approach game design. Big fun doesn't always need a big budget." },
+
+  { keywords:['mission','vision','goal','dream','purpose'],
+    response:"Our mission is to build games that are genuinely fun, creative, and memorable 🌟 — games people play because they love them, not because of hype. We believe the best games come from genuine curiosity, not million-dollar budgets." },
+
+  { keywords:['location','where are you','country','city','based'],
+    response:"We're a remote-first indie studio 🌐 — our team spans different locations but we're united by one shared Godot project and a whole lot of passion!" },
+
+  { keywords:['social media','twitter','discord','youtube','instagram','follow'],
+    response:"Find us on Twitter/X, Discord, and YouTube! 🐦 Hit the social buttons in our Contact section to stay updated on everything — devlogs, screenshots, and game news!" },
+
+  // ── TEAM ──────────────────────────────────────────────
+  { keywords:['team','who works','crew','members','staff','people'],
+    response:"Meet the FunLogic crew! 👾\n• 🎨 Game Design & UI Lead\n• 💻 Developer — Lead Programmer (Godot 4 wizard)\n• 🎵 Sound Designer — Crafts our game audio\n• 🧊 3D Artists — Sculpts worlds in Blender\n• 📋 Producer — Keeps everything running & does marketing\nFive roles, one dream! See in website for full details..." },
+
+  { keywords:['design lead','ui lead'],
+    response:"Ali is our Game Design & UI Lead 🎨 — the vision behind FunLogic Studio's look and feel. Every interface, layout, and user experience you see? That's his craftsmanship!" },
+
+  { keywords:['programmer','developer','coder','lead programmer'],
+    response:"Our Lead Programmer is the Godot 4 engine whisperer 💻 — every mechanic, system, and game loop is brought to life by them. If it moves and does something cool, they coded it!" },
+
+  { keywords:['sound','music','audio','composer'],
+    response:"Our Sound Designer 🎵 crafts every soundscape, ambient track, and sound effect that makes our game worlds feel alive. They use LMMS and Audacity to build the audio DNA of FunLogic games." },
+
+  { keywords:['3d artist','artist','blender','modeler','animator'],
+    response:"Our 3D Artist 🧊 sculpts every world polygon by polygon in Blender. From characters to environments — the visual soul of our games lives in their hands." },
+
+  { keywords:['producer','marketing','manager'],
+    response:"Our Producer 📋 is the generalist who keeps the whole studio running smoothly. From project timelines to spreading the word about our games — if FunLogic is visible, that's our Producer at work!" },
+
+  { keywords:['how many','team size','size of team','number of people'],
+    response:"We're a tight 10+ person core team! 🖐️ Small but mighty — every member wears multiple hats and we've already shipped PhysicsQuest LIVE!" },
+
+  // ── JOINING THE TEAM ──────────────────────────────────
+  { keywords:['join','apply','work with','collaborate','hire','position','role','internship'],
+    response:"We'd love to have you on the adventure! 🙌 Head to the Contact section and drop us a message — select \"🎮 Join the Team\" in the subject line. Tell us what you do and why you're passionate about indie games!" },
+
+  { keywords:['volunteer','unpaid','free','contribute'],
+    response:"We're always open to passionate contributors! 💙 Right now the team is small and self-funded, so reach out via the Contact section and let's chat about how you could be part of the FunLogic story." },
+
+  // ── GAMES — THE LAST DIGIT ────────────────────────────
+  { keywords:['the last digit','last digit','main game','flagship','your game'],
+    response:"The Last Digit is our main game currently in development! 🔢 It's a 3D sci-fi survival experience set on a fractured planet orbiting a dying star. Explore alien terrain, confront rogue AI, and unravel the mystery of a collapsed civilization. Built in Godot 4!" },
+
+  { keywords:['last digit release','when last digit','last digit date','last digit launch'],
+    response:"The Last Digit is currently in active development 🔢⚙️ — we're heads-down building the first chapter. Stay tuned via our Devlog and social channels for a demo announcement!" },
+
+  { keywords:['last digit gameplay','how do you play last digit','last digit mechanic'],
+    response:"The Last Digit is a 3D sci-fi survival game 🔢 — explore a fractured alien planet, survive hostile environments, confront rogue AI enemies, and piece together the story of a civilization that collapsed before you arrived. Expect exploration, tension, and atmosphere!" },
+
+  { keywords:['last digit genre','what kind of game','last digit type'],
+    response:"The Last Digit is a 3D Sci-Fi Survival game 🌌 — atmospheric exploration, survival mechanics, and a deep mystery to uncover. If you love games like Subnautica or Outer Wilds, you'll want to keep an eye on this one!" },
+
+  // ── GAMES — ALL GAMES ─────────────────────────────────
+  { keywords:['what games','games are you','your games','game list','all games'],
+    response:"Here's what FunLogic is cooking! 🎮\n\n🔢 The Last Digit — 3D Sci-Fi Survival (In Development)\n🏬 Night Shift: The Mall — First-Person Horror (Concept)\n⚔️ Arena Survivor 3D — Wave Combat Roguelite (Concept)\n\nPlus PhysicsQuest is already LIVE! Check the Games section for full details." },
+
+  { keywords:['night shift','the mall','horror game','janitor'],
+    response:"Night Shift: The Mall is our first-person horror concept 🏬👻 — you're the janitor working alone in an abandoned mall after midnight. Something else is on the clock with you. Atmospheric, tense, and deeply unsettling. We can't wait to build it!" },
+
+  { keywords:['arena survivor','combat game','wave','roguelite','arena'],
+    response:"Arena Survivor 3D is our wave-based combat concept ⚔️ — survive escalating hordes of enemies across distinct battle arenas. Upgrade your character, unlock abilities, and conquer every wave. Think intense arcade action with roguelite depth!" },
+
+  { keywords:['how many games','number of games','games in pipeline'],
+    response:"We currently have 3 games in the pipeline! 🎮\n• The Last Digit (In Active Development)\n• Night Shift: The Mall (Concept)\n• Arena Survivor 3D (Concept)\n\nAnd PhysicsQuest is already shipped and live! That's just the beginning." },
+
+  { keywords:['demo','playable','beta','early access','try the game'],
+    response:"A playable demo for The Last Digit is planned for when the first chapter is complete! 🔢 Follow our Devlog and social channels — we'll announce it the moment it's ready. The wait will be worth it!" },
+
+  { keywords:['release date','when is','when will','launch date','ship'],
+    response:"We haven't announced a firm release date yet — we're focused on building it right! 🛠️ Follow our Devlog section for the latest updates. We post progress as it happens!" },
+
+  // ── PHYSICSQUEST ──────────────────────────────────────
+  { keywords:['physicsquest','physics quest','physics game'],
+    response:"PhysicsQuest is our first shipped product and it's LIVE right now! ⚡🎓\n\nIt's a gamified physics learning platform for Grades 6–9 featuring:\n• 55+ handcrafted levels\n• 4 unique game modes\n• Full XP & progression system\n• Zero login or download required\n\nPlay it at: https://physics-quest-version1.netlify.app" },
+
+  { keywords:['play physicsquest','link','url','website physicsquest'],
+    response:"You can play PhysicsQuest right now! 🎮⚛️\n👉 https://physics-quest-version1.netlify.app\n\nNo account, no download — just open the link and start learning physics through gameplay!" },
+
+  { keywords:['physicsquest grades','who is physicsquest for','students','school','education','edtech'],
+    response:"PhysicsQuest is designed for students in Grades 6–9 🎓 — it covers physics concepts aligned to curriculum standards through 55+ levels and 4 game modes. Teachers love it because students actually want to play it!" },
+
+  { keywords:['physicsquest levels','how many levels','physicsquest modes'],
+    response:"PhysicsQuest has 55+ handcrafted physics levels and 4 distinct game modes 🕹️⚛️ — each mode tests your understanding in a different way. Plus there's a full XP system so progression feels rewarding!" },
+
+  { keywords:['is physicsquest free','cost','price','paid'],
+    response:"PhysicsQuest is completely free to play! 🆓 No account, no subscription, no download — just click the link and play. That's how we wanted it!" },
+
+  { keywords:['more edtech','other education','educational games','learning games'],
+    response:"More educational tools are in development! 📚✨ PhysicsQuest is just the start — we're planning more gamified learning apps across different subjects. Keep an eye on our Devlog for announcements!" },
+
+  // ── ENGINE & TOOLS ────────────────────────────────────
+  { keywords:['godot','engine','game engine','what engine'],
+    response:"We use Godot 4 as our game engine! 🚀 It's open source, incredibly powerful, lightweight, and a perfect fit for our team. We chose it over Unity for its freedom, active community, and how naturally it supports our workflow." },
+
+  { keywords:['why godot','why not unity','unity vs godot','godot over unity'],
+    response:"Great question! We chose Godot 4 over Unity for several reasons 🧠:\n• Open source with no licensing fees\n• Lightweight and fast to iterate in\n• Incredible GDScript makes prototyping quick\n• The community is fantastic\n• No runtime fee surprises!\nOur full breakdown is in the Devlog — check \"Why We Chose Godot 4 Over Unity\"!" },
+
+  { keywords:['blender','3d tool','modeling tool'],
+    response:"We use Blender for all our 3D art and animation 🧊 — every character model, environment asset, and cinematic is crafted in Blender before making its way into Godot 4. Free, powerful, and endlessly capable!" },
+
+  { keywords:['lmms','music tool','audio tool','audacity'],
+    response:"Our audio pipeline runs on LMMS for music composition and Audacity for sound editing and recording 🎵 — both are open source, and in the hands of our Sound Designer, they create incredible results!" },
+
+  { keywords:['github','version control','git','source control'],
+    response:"We use GitHub for version control and collaboration 🐙 — it keeps our codebase clean, our team in sync, and our history safe. Essential for a multi-person dev team!" },
+
+  { keywords:['tech stack','tools','software','what do you use'],
+    response:"Here's the FunLogic tech stack! 🛠️\n• Game Engine: Godot 4\n• 3D Art: Blender\n• Music: LMMS\n• Audio Editing: Audacity\n• Version Control: GitHub\n\nAll open source, all community-powered. Just how we like it!" },
+
+  // ── CONTACT & COLLABS ─────────────────────────────────
+  { keywords:['contact','email','reach','get in touch','message'],
+    response:"We'd love to hear from you! 💬 Scroll down to the Contact section and fill out the form — choose what it's about and drop us a message. We read every one!" },
+
+  { keywords:['collab','partnership','sponsor','partner','collaboration'],
+    response:"We're always open to meaningful collaborations! 🤝 If you have a project, partnership idea, or opportunity that aligns with indie game development or education tech — reach out via the Contact section and select \"Collaboration\". Let's talk!" },
+
+  { keywords:['press','media','journalist','coverage'],
+    response:"Are you from a publication or media outlet? 📰 We'd love to share our story! Reach out through the Contact form with details about your publication. Press kits and materials available on request!" },
+
+  // ── DEVLOG / BLOG ─────────────────────────────────────
+  { keywords:['devlog','blog','update','news','latest','recent'],
+    response:"Check out our Devlog section for the latest studio updates! 📖\n\n• PhysicsQuest v1 is Live!\n• The Last Digit — World Design Begins\n• Team Assembled. FunLogic Founded.\n• Why We Chose Godot 4 Over Unity\n\nScroll down to the Devlog section to read more!" },
+
+  { keywords:['physicsquest launch','shipped','first product','milestone'],
+    response:"PhysicsQuest going live was a HUGE milestone for us! 🎉 It's our first shipped product — 55+ levels, 4 game modes, full XP system, no login needed. Proving we can ship is the first step to building bigger things!" },
+
+  // ── FUN ZONE ──────────────────────────────────────────
+  { keywords:['fun zone','quiz','reflex','would you rather','mini game','games on website'],
+    response:"The Fun Zone is packed! 🎮 Head over there to:\n• 🧠 Test your game dev knowledge with our quiz\n• 🎲 Generate random game concepts\n• ⚡ Test your gamer reflexes\n• 🤔 Answer Gamer's Dilemma questions\n\nScroll to the Fun Zone section — it's a vibe!" },
+
+  { keywords:['konami','cheat code','easter egg','secret'],
+    response:"Oh, you found out about the Konami Code? 👀 Try typing ↑↑↓↓←→←→BA on your keyboard and see what happens. It's a little gift from us to true gamers. 🕹️" },
+
+  // ── GENERAL GAMING ────────────────────────────────────
+  { keywords:['indie game','indie dev','indie studio','independent'],
+    response:"Indie game dev is our heart and soul! 💙 We believe small teams with big passion can create experiences that rival anything from major studios. FunLogic is proof that you don't need a massive budget to make something people love." },
+
+  { keywords:['how to make games','learn game dev','start game dev','want to make games'],
+    response:"Awesome that you want to make games! 🚀 Here's our honest advice:\n1. Start with Godot 4 — it's free, beginner-friendly, and powerful\n2. Build tiny projects first. Finish them!\n3. Learn from the Godot docs and YouTube community\n4. Don't wait to be ready — just build and learn along the way\n\nWe started exactly like this!" },
+
+  { keywords:['favourite game','favorite game','what game do you like','best game'],
+    response:"Hard question! 😄 As a studio, games like Subnautica, Hollow Knight, and Outer Wilds are huge inspirations for us — atmospheric, handcrafted, and memorable. What's yours? 🎮" },
+
+  { keywords:['game jam','jam','gamejam'],
+    response:"Game jams are one of the best ways to grow as a dev! ⚡ We love the culture of jams — forced constraints spark incredible creativity. FunLogic may participate in some in the future. Watch this space!" },
+
+  // ── COMPLIMENTS / PRAISE ──────────────────────────────
+  { keywords:['amazing','awesome','cool','great','love','fantastic','incredible'],
+    response:"Thank you so much! 🙌 That genuinely means the world to us. We put our hearts into everything FunLogic builds — hearing that it lands well is the best fuel! Tell a friend! 😄" },
+
+  { keywords:['good luck','best of luck','wish you'],
+    response:"Thank you! 🌟 We're going to need it — and we're going to earn it too! Follow along on our journey. The best chapters of the FunLogic story are still being written!" },
+
+  // ── SUPPORT / FEEDBACK ────────────────────────────────
+  { keywords:['bug','issue','problem','broken','fix','not working'],
+    response:"Sorry to hear something isn't working! 🛠️ For PhysicsQuest issues, or any website bugs, reach out through the Contact form with as much detail as you can (device, browser, what happened). We'll investigate ASAP!" },
+
+  { keywords:['feedback','suggestion','feature request','idea'],
+    response:"We love feedback! 💡 Drop your thoughts, ideas, or suggestions through our Contact form. Whether it's about PhysicsQuest, The Last Digit, or the website itself — we genuinely read and consider every message." },
+
+  // ── FALLBACK / GREETINGS ──────────────────────────────
+  { keywords:['hello','hi','hey','what up','howdy','greetings','yo','sup'],
+    response:"Hey there! 👋 Welcome to FunLogic Studio. I'm your offline studio assistant — ask me anything about our games, team, tools, or products. What would you like to know? 🎮" },
+
+  { keywords:['thanks','thank you','thx','cheers','appreciate'],
+    response:"You're very welcome! 😊 If you have more questions about FunLogic, games, or anything else — I'm right here. Good luck on whatever adventure you're on! 🎮" },
+
+  { keywords:['bye','goodbye','see you','later','cya'],
+    response:"See you later! 👋 Thanks for stopping by FunLogic HQ. Go play some games, dream big, and come back soon! 🎮✨" },
+
+  { keywords:['who made you','who built you','how do you work','are you ai','are you a bot'],
+    response:"I'm the FunLogic offline assistant! 🤖 Built right into this website so I can answer your questions instantly — no internet connection needed. I know everything about FunLogic Studio, our games, our team, and our products. What would you like to know?" },
+
+  // ════════════════════════════════════════════════════
+  //  ✏️  ADD YOUR OWN RESPONSES HERE
+  //  Copy the format below and paste new entries above this comment.
+  //
+  //  { keywords:['your keyword','another phrase'], response:"Your reply here 🎮" },
+  //
+  // ════════════════════════════════════════════════════
+
+];
+
+// ── Matching engine ────────────────────────────────────
+function offlineReply(input) {
+  const lower = input.toLowerCase();
+  // Score each entry by how many keywords match
+  let best = null, bestScore = 0;
+  for (const entry of QA_BANK) {
+    let score = 0;
+    for (const kw of entry.keywords) {
+      if (lower.includes(kw)) score += kw.split(' ').length; // multi-word = higher weight
+    }
+    if (score > bestScore) { bestScore = score; best = entry; }
+  }
+  if (best) return best.response;
+  // Default fallback
+  return "Hmm, I'm not sure about that one! 🤔 Try asking me about our games, team, tools, or PhysicsQuest. You can also reach us directly through the Contact section!";
+}
+
+// ── Chat UI ────────────────────────────────────────────
+const msgs = document.getElementById('chat-messages');
+const inp  = document.getElementById('chat-input');
+
+function quickAsk(txt){ inp.value = txt; sendMsg(); }
+
+function sendMsg(){
+  const txt = inp.value.trim(); if(!txt) return; inp.value = '';
+  addMsg(txt, 'user');
+  const dot = addMsg('● ● ●', 'bot');
+  // Simulate a tiny "thinking" delay for naturalness
+  setTimeout(() => {
+    dot.remove();
+    addMsg(offlineReply(txt), 'bot');
+  }, 420);
+}
+
+function addMsg(txt, cls){
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls;
+  d.textContent = txt;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+document.getElementById('chat-send').onclick = sendMsg;
+inp.addEventListener('keydown', e => { if(e.key === 'Enter') sendMsg(); });
+
+// ══════════════════════════════════════════════════════
+//  KONAMI CODE
+// ══════════════════════════════════════════════════════
+const konami=[38,38,40,40,37,39,37,39,66,65];let ki=0;
+document.addEventListener('keydown',e=>{
+  if(e.keyCode===konami[ki])ki++;else ki=0;
+  if(ki===konami.length){ki=0;
+    const f=document.createElement('div');f.className='konami-flash';document.body.appendChild(f);
+    document.querySelectorAll('.game-card,.fun-card,.team-card,.stat-card').forEach(c=>{c.style.boxShadow='0 0 40px rgba(0,212,255,0.4)';setTimeout(()=>c.style.boxShadow='',900);});
+    setTimeout(()=>f.remove(),600);
+    addMsg("🎮 KONAMI CODE DETECTED! You're a true gamer. The FunLogic team salutes you! Press ↑↑↓↓←→←→BA any time for this easter egg. 🫡",'bot');
+    document.getElementById('chat-window').classList.add('open');
+  }
+});
+
+// ══════════════════════════════════════════════════════
+//  PLACEHOLDER IMAGE CLICK
+// ══════════════════════════════════════════════════════
+document.querySelectorAll('.placeholder-add').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const url=prompt('Enter image URL for this game:');
+    if(url){const card=btn.closest('.game-card');const ph=card.querySelector('.game-img-placeholder');const img=document.createElement('img');img.src=url;img.style.cssText='width:100%;height:210px;object-fit:cover;display:block;border-bottom:1px solid var(--border)';ph.replaceWith(img);}
+  });
+});
+</script>
+</body>
+</html>
